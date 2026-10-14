@@ -1,0 +1,5873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jharia — Digital Spatial-Linguistic Archive</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* ==================================================
+   GLOBAL
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #11100e;
+    color: #f0e9dc;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.section-number {
+    color: #d45a2a;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 30px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 100;
+}
+
+.logo {
+    font-size: 14px;
+    letter-spacing: 3px;
+    font-weight: 500;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: #f0e9dc;
+    text-decoration: none;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    opacity: .75;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: #d45a2a;
+    opacity: 1;
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+    height: 100vh;
+    min-height: 650px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 70%,
+            rgba(212,90,42,.14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 25% 20%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+        #11100e;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
+
+    background-size: 80px 80px;
+    opacity: .35;
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 1200px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.archive-label {
+    color: #d45a2a;
+
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    margin-bottom: 28px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+
+    font-size: clamp(85px,14vw,190px);
+
+    line-height: .82;
+    letter-spacing: -7px;
+}
+
+.subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+
+    font-size: clamp(26px,4vw,55px);
+
+    color: #a69f94;
+
+    margin-left: 9%;
+    margin-top: 24px;
+}
+
+.hero-bottom {
+    margin-top: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    border-top: 1px solid rgba(240,233,220,.18);
+    padding-top: 25px;
+}
+
+.description {
+    max-width: 480px;
+
+    color: #b8b0a4;
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.explore {
+    color: #f0e9dc;
+    text-decoration: none;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.arrow {
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid #d45a2a;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #d45a2a;
+
+    transition: .3s;
+}
+
+.explore:hover .arrow {
+    background: #d45a2a;
+    color: #11100e;
+
+    transform: translateY(5px);
+}
+
+.coordinate {
+    position: absolute;
+
+    color: #6f6961;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    z-index: 2;
+}
+
+.coordinate.left {
+    left: 5%;
+    top: 46%;
+
+    transform: rotate(-90deg);
+    transform-origin: left;
+}
+
+.coordinate.right {
+    right: 5%;
+    bottom: 8%;
+}
+
+.fire-line {
+    position: absolute;
+
+    right: 13%;
+    top: 20%;
+
+    width: 1px;
+    height: 160px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #d45a2a,
+            transparent
+        );
+
+    opacity: .7;
+}
+
+.fire-dot {
+    position: absolute;
+
+    right: calc(13% - 4px);
+    top: 39%;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #d45a2a;
+
+    box-shadow:
+        0 0 25px rgba(212,90,42,.8);
+}
+
+
+/* ==================================================
+   SPATIAL ARCHIVE
+================================================== */
+
+#map {
+    background: #f0e9dc;
+    color: #11100e;
+
+    padding: 110px 7% 130px;
+}
+
+.map-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 60px;
+
+    margin-bottom: 55px;
+}
+
+#map h2 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(52px,7vw,96px);
+
+    font-weight: 500;
+    line-height: .95;
+
+    letter-spacing: -3px;
+}
+
+#map h2 em {
+    color: #8c8377;
+    font-weight: 500;
+}
+
+.map-intro p {
+    max-width: 390px;
+
+    color: #665f56;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* spatial diagram */
+
+.spatial-map {
+    height: 570px;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(17,16,14,.06) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(17,16,14,.06) 1px,
+            transparent 1px
+        ),
+        #ddd5c7;
+
+    background-size: 55px 55px;
+
+    border:
+        1px solid rgba(17,16,14,.18);
+}
+
+
+/* abstract coalfield zones */
+
+.coalfield-zone {
+    position: absolute;
+
+    border:
+        1px solid rgba(17,16,14,.15);
+
+    border-radius: 50%;
+
+    transform: rotate(-12deg);
+}
+
+.zone-one {
+    width: 430px;
+    height: 250px;
+
+    left: 18%;
+    top: 22%;
+}
+
+.zone-two {
+    width: 300px;
+    height: 180px;
+
+    left: 34%;
+    top: 37%;
+
+    border-color:
+        rgba(212,90,42,.3);
+}
+
+.zone-three {
+    width: 190px;
+    height: 110px;
+
+    left: 27%;
+    top: 48%;
+}
+
+
+/* coordinate-like marks */
+
+.map-cross {
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    opacity: .25;
+}
+
+.map-cross::before,
+.map-cross::after {
+    content: "";
+
+    position: absolute;
+
+    background: #11100e;
+}
+
+.map-cross::before {
+    width: 15px;
+    height: 1px;
+
+    top: 7px;
+}
+
+.map-cross::after {
+    height: 15px;
+    width: 1px;
+
+    left: 7px;
+}
+
+.cross-one {
+    left: 13%;
+    top: 18%;
+}
+
+.cross-two {
+    right: 13%;
+    top: 24%;
+}
+
+.cross-three {
+    right: 26%;
+    bottom: 18%;
+}
+
+
+/* relationship line */
+
+.relationship-line {
+    position: absolute;
+
+    left: 42%;
+    top: 47%;
+
+    width: 27%;
+    height: 1px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #d45a2a 0 5px,
+            transparent 5px 11px
+        );
+
+    transform: rotate(17deg);
+    transform-origin: left center;
+
+    opacity: .75;
+}
+
+
+/* Jharia marker */
+
+.location-jharia {
+    position: absolute;
+
+    left: 39%;
+    top: 40%;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    z-index: 4;
+}
+
+.jharia-marker {
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: #d45a2a;
+
+    box-shadow:
+        0 0 0 7px rgba(212,90,42,.12);
+}
+
+
+/* Belgaria marker */
+
+.location-belgaria {
+    position: absolute;
+
+    left: 67%;
+    top: 59%;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    z-index: 4;
+}
+
+.belgaria-marker {
+    width: 15px;
+    height: 15px;
+
+    background: #11100e;
+
+    border: 2px solid #d45a2a;
+
+    transform: rotate(45deg);
+}
+
+
+/* labels */
+
+.location-label {
+    background: rgba(240,233,220,.94);
+
+    padding: 12px 15px;
+
+    min-width: 150px;
+
+    border-left: 1px solid #d45a2a;
+}
+
+.location-label small {
+    display: block;
+
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+.location-label strong {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.location-label span {
+    display: block;
+
+    color: #756d63;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+
+    margin-top: 4px;
+}
+
+
+/* map labels */
+
+.map-caption {
+    position: absolute;
+
+    color: rgba(17,16,14,.4);
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.caption-one {
+    left: 4%;
+    bottom: 5%;
+}
+
+.caption-two {
+    right: 4%;
+    top: 5%;
+}
+
+.fire-index {
+    position: absolute;
+
+    right: 5%;
+    bottom: 8%;
+
+    text-align: right;
+}
+
+.fire-index span {
+    display: block;
+
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+.fire-index strong {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 35px;
+    font-weight: 500;
+}
+
+
+/* legend */
+
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 35px;
+
+    margin-top: 24px;
+
+    font-size: 9px;
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #d45a2a;
+}
+
+.legend-diamond {
+    width: 9px;
+    height: 9px;
+
+    background: #11100e;
+
+    border: 1px solid #d45a2a;
+
+    transform: rotate(45deg);
+}
+
+.legend-line {
+    width: 25px;
+    height: 1px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #d45a2a 0 4px,
+            transparent 4px 7px
+        );
+}
+
+.map-disclaimer {
+    max-width: 650px;
+
+    margin-top: 30px;
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(17,16,14,.15);
+
+    color: #766e64;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* ==================================================
+   STORIES
+================================================== */
+
+#stories {
+    background: #11100e;
+    color: #f0e9dc;
+
+    padding: 120px 7% 150px;
+}
+
+.stories-header {
+    border-bottom:
+        1px solid rgba(240,233,220,.18);
+
+    padding-bottom: 55px;
+    margin-bottom: 80px;
+}
+
+.stories-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 60px;
+}
+
+.stories-title-row h2 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(55px,7vw,105px);
+
+    font-weight: 500;
+    line-height: .95;
+    letter-spacing: -3px;
+}
+
+.stories-title-row h2 em {
+    color: #a69f94;
+    font-weight: 500;
+}
+
+.stories-title-row p {
+    max-width: 380px;
+
+    color: #9e978d;
+
+    font-size: 13px;
+    line-height: 1.8;
+
+    margin-bottom: 8px;
+}
+
+.story-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+.story-card {
+    position: relative;
+
+    transition:
+        transform .4s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-8px);
+}
+
+.story-offset {
+    margin-top: 90px;
+}
+
+.story-number {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size: 13px;
+
+    color: #d45a2a;
+
+    margin-bottom: 15px;
+}
+
+.story-visual {
+    height: 420px;
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 22px;
+
+    border:
+        1px solid rgba(240,233,220,.12);
+
+    transition:
+        border-color .4s ease;
+}
+
+.story-card:hover .story-visual {
+    border-color:
+        rgba(212,90,42,.55);
+}
+
+.story-visual > span {
+    position: relative;
+    z-index: 2;
+
+    font-size: 9px;
+    letter-spacing: 2.5px;
+
+    color:
+        rgba(240,233,220,.7);
+}
+
+.visual-fire {
+    background:
+        radial-gradient(
+            circle at 68% 72%,
+            rgba(212,90,42,.55),
+            transparent 17%
+        ),
+        radial-gradient(
+            circle at 68% 72%,
+            rgba(212,90,42,.15),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #27231e,
+            #0c0b0a 75%
+        );
+}
+
+.visual-memory {
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0 45%,
+            rgba(212,90,42,.18) 45% 46%,
+            transparent 46% 100%
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 0 1px,
+            transparent 1px 45px
+        ),
+        #191714;
+}
+
+.visual-relocation {
+    background:
+        linear-gradient(
+            90deg,
+            transparent 49.5%,
+            rgba(212,90,42,.45) 50%,
+            transparent 50.5%
+        ),
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        #201d19;
+
+    background-size:
+        auto,
+        45px 45px,
+        45px 45px,
+        auto;
+}
+
+.story-symbol {
+    position: absolute;
+
+    right: 25px;
+    bottom: 15px;
+
+    font-family:
+        'Playfair Display', serif;
+
+    font-size: 115px;
+
+    color:
+        rgba(240,233,220,.08);
+
+    line-height: 1;
+}
+
+.story-info {
+    padding-top: 27px;
+}
+
+.story-type {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2.5px;
+
+    margin-bottom: 16px;
+}
+
+.story-info h3 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(28px,2.5vw,39px);
+
+    font-weight: 500;
+
+    line-height: 1.08;
+
+    margin-bottom: 20px;
+}
+
+.story-info p {
+    color: #999187;
+
+    font-size: 12px;
+    line-height: 1.8;
+
+    max-width: 330px;
+}
+
+.story-meta {
+    margin-top: 30px;
+    padding-top: 14px;
+
+    border-top:
+        1px solid rgba(240,233,220,.14);
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #6f6961;
+
+    font-size: 8px;
+    letter-spacing: 1.7px;
+}
+
+
+/* ==================================================
+   WORDS
+================================================== */
+
+#words {
+    background: #f0e9dc;
+    color: #11100e;
+
+    padding: 120px 7% 140px;
+}
+
+.words-header {
+    position: relative;
+
+    padding-bottom: 70px;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.2);
+}
+
+.words-header h2 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(55px,7vw,105px);
+
+    font-weight: 500;
+
+    line-height: .95;
+    letter-spacing: -3px;
+
+    max-width: 900px;
+}
+
+.words-header h2 em {
+    color: #8c8377;
+    font-weight: 500;
+}
+
+.words-intro {
+    max-width: 420px;
+
+    margin-top: 45px;
+    margin-left: auto;
+
+    color: #665f56;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.word-list {
+    margin-top: 35px;
+}
+
+.word-entry {
+    display: grid;
+
+    grid-template-columns:
+        70px 1.4fr 1fr;
+
+    gap: 35px;
+
+    align-items: center;
+
+    padding: 35px 0;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.16);
+
+    transition: .35s ease;
+}
+
+.word-entry:hover {
+    padding-left: 15px;
+
+    border-bottom-color:
+        #d45a2a;
+}
+
+.word-number {
+    color: #d45a2a;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.word-main {
+    display: flex;
+    align-items: baseline;
+
+    gap: 25px;
+}
+
+.word-term {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(35px,4vw,62px);
+
+    line-height: 1;
+}
+
+.word-language {
+    color: #8a8176;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.word-meaning {
+    color: #665f56;
+
+    max-width: 360px;
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.words-note {
+    margin-top: 70px;
+    margin-left: auto;
+
+    max-width: 540px;
+
+    border-left:
+        1px solid #d45a2a;
+
+    padding-left: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        120px 1fr;
+
+    gap: 25px;
+}
+
+.words-note span {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.words-note p {
+    color: #665f56;
+
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* ==================================================
+   TIMELINE
+================================================== */
+
+#timeline {
+    background: #11100e;
+    color: #f0e9dc;
+    padding: 120px 7% 150px;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 60px;
+
+    padding-bottom: 65px;
+    border-bottom: 1px solid rgba(240,233,220,.18);
+}
+
+.timeline-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(55px,7vw,105px);
+    font-weight: 500;
+    line-height: .95;
+    letter-spacing: -3px;
+}
+
+.timeline-header h2 em {
+    color: #a69f94;
+    font-weight: 500;
+}
+
+.timeline-intro {
+    max-width: 390px;
+    color: #999187;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* TIMELINE BODY */
+
+.timeline-list {
+    position: relative;
+    margin-top: 80px;
+}
+
+/* orange vertical line */
+
+.timeline-list::before {
+    content: "";
+    position: absolute;
+
+    left: 26%;
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            #d45a2a,
+            rgba(212,90,42,.15)
+        );
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 26% 74%;
+
+    min-height: 190px;
+
+    position: relative;
+}
+
+.timeline-year {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(42px,5vw,76px);
+
+    color: #f0e9dc;
+
+    line-height: 1;
+
+    padding-right: 45px;
+}
+
+.timeline-event {
+    position: relative;
+
+    padding:
+        0 0 60px 60px;
+
+    border-bottom:
+        1px solid rgba(240,233,220,.12);
+}
+
+/* orange timeline point */
+
+.timeline-event::before {
+    content: "";
+
+    position: absolute;
+
+    left: -6px;
+    top: 12px;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #d45a2a;
+
+    box-shadow:
+        0 0 0 7px rgba(212,90,42,.10);
+}
+
+.timeline-label {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2.5px;
+
+    margin-bottom: 15px;
+}
+
+.timeline-event h3 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(27px,3vw,42px);
+
+    font-weight: 500;
+
+    margin-bottom: 15px;
+}
+
+.timeline-event p {
+    max-width: 570px;
+
+    color: #999187;
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* CURRENT MOMENT */
+
+.timeline-item.current .timeline-year {
+    color: #d45a2a;
+}
+
+.timeline-item.current .timeline-event h3 {
+    color: #f0e9dc;
+}
+
+
+/* TIMELINE END */
+
+.timeline-end {
+    margin-top: 65px;
+    margin-left: 26%;
+
+    padding-left: 60px;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.timeline-end-line {
+    width: 70px;
+    height: 1px;
+
+    background: #d45a2a;
+}
+
+.timeline-end p {
+    max-width: 480px;
+
+    color: #777067;
+
+    font-size: 10px;
+    line-height: 1.7;
+
+    letter-spacing: 1px;
+}
+
+/* ==================================================
+   ABOUT / METHODOLOGY / SOURCES
+================================================== */
+
+#about {
+    background: #f0e9dc;
+    color: #11100e;
+    padding: 120px 7% 80px;
+}
+
+.about-hero {
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap: 80px;
+
+    padding-bottom: 80px;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.2);
+}
+
+.about-hero h2 {
+    font-family: 'Playfair Display', serif;
+
+    font-size:
+        clamp(55px,7vw,105px);
+
+    font-weight: 500;
+
+    line-height: .95;
+    letter-spacing: -3px;
+}
+
+.about-hero h2 em {
+    color: #8c8377;
+    font-weight: 500;
+}
+
+.about-statement {
+    align-self: end;
+
+    max-width: 430px;
+}
+
+.about-statement .large-text {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 25px;
+    line-height: 1.35;
+
+    margin-bottom: 25px;
+}
+
+.about-statement p {
+    color: #665f56;
+
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+
+/* ==================================================
+   ARCHIVE FRAMEWORK
+================================================== */
+
+.archive-framework {
+    padding: 75px 0;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.2);
+}
+
+.framework-label {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2.5px;
+
+    margin-bottom: 35px;
+}
+
+.framework-chain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.framework-item {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(18px,2vw,30px);
+
+    text-align: center;
+}
+
+.framework-arrow {
+    color: #d45a2a;
+    font-size: 18px;
+}
+
+
+/* ==================================================
+   METHODOLOGY
+================================================== */
+
+.methodology {
+    display: grid;
+
+    grid-template-columns:
+        1fr 2fr;
+
+    gap: 80px;
+
+    padding: 80px 0;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.2);
+}
+
+.methodology-title h3 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(35px,4vw,55px);
+
+    font-weight: 500;
+}
+
+.method-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 50px 45px;
+}
+
+.method-number {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.method-card h4 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size: 24px;
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+.method-card p {
+    color: #665f56;
+
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   ETHICS
+================================================== */
+
+.ethics {
+    display: grid;
+
+    grid-template-columns:
+        1fr 2fr;
+
+    gap: 80px;
+
+    padding: 75px 0;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.2);
+}
+
+.ethics h3 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(35px,4vw,55px);
+
+    font-weight: 500;
+}
+
+.ethics-content {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 40px;
+}
+
+.ethics-content p {
+    color: #665f56;
+
+    font-size: 11px;
+    line-height: 1.85;
+}
+
+.ethics-highlight {
+    border-left: 1px solid #d45a2a;
+
+    padding-left: 25px;
+}
+
+
+/* ==================================================
+   SOURCES
+================================================== */
+
+.sources {
+    padding: 75px 0;
+}
+
+.sources-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 50px;
+
+    margin-bottom: 45px;
+}
+
+.sources h3 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(35px,4vw,55px);
+
+    font-weight: 500;
+}
+
+.sources-note {
+    max-width: 400px;
+
+    color: #766e64;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.source-list {
+    border-top:
+        1px solid rgba(17,16,14,.2);
+}
+
+.source-item {
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr auto;
+
+    gap: 25px;
+
+    padding: 24px 0;
+
+    border-bottom:
+        1px solid rgba(17,16,14,.15);
+
+    align-items: center;
+}
+
+.source-number {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.source-name {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size: 20px;
+}
+
+.source-type {
+    color: #81786d;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    text-align: right;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.archive-footer {
+    background: #11100e;
+    color: #f0e9dc;
+
+    min-height: 500px;
+
+    padding: 90px 7% 45px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-small {
+    display: flex;
+    justify-content: space-between;
+
+    color: #817a70;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.footer-title {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(80px,15vw,210px);
+
+    font-weight: 500;
+
+    line-height: .72;
+
+    letter-spacing: -7px;
+}
+
+.footer-title span {
+    color: #d45a2a;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    border-top:
+        1px solid rgba(240,233,220,.15);
+
+    padding-top: 20px;
+
+    color: #817a70;
+
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+/* ==================================================
+   ARCHIVE RECORDS
+================================================== */
+
+#archive {
+    background: #171512;
+    color: #f0e9dc;
+    padding: 120px 7% 140px;
+}
+
+.archive-header {
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 70px;
+    align-items: end;
+    margin-bottom: 70px;
+}
+
+.archive-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(55px, 7vw, 100px);
+    line-height: .92;
+    letter-spacing: -3px;
+    font-weight: 500;
+}
+
+.archive-header h2 em {
+    color: #a69f94;
+    font-weight: 500;
+}
+
+.archive-header p {
+    color: #938b80;
+    font-size: 12px;
+    line-height: 1.9;
+    max-width: 400px;
+}
+
+
+/* ARCHIVE GRID */
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    border-top:
+        1px solid rgba(240,233,220,.18);
+}
+
+
+/* INDIVIDUAL RECORD */
+
+.archive-card {
+    position: relative;
+
+    min-height: 330px;
+
+    padding: 35px;
+
+    border-bottom:
+        1px solid rgba(240,233,220,.18);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        background .35s ease,
+        transform .35s ease;
+}
+
+.archive-card:nth-child(odd) {
+    border-right:
+        1px solid rgba(240,233,220,.18);
+}
+
+.archive-card:hover {
+    background: #211e1a;
+}
+
+
+/* ORANGE HOVER LINE */
+
+.archive-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: 35px;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: #d45a2a;
+
+    transition: width .4s ease;
+}
+
+.archive-card:hover::after {
+    width: calc(100% - 70px);
+}
+
+
+/* TOP INFORMATION */
+
+.archive-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 75px;
+}
+
+.archive-id {
+    color: #d45a2a;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.archive-medium {
+    color: #756f67;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-align: right;
+}
+
+
+/* RECORD TITLE */
+
+.archive-card h3 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(27px, 3vw, 42px);
+
+    font-weight: 500;
+
+    line-height: 1.08;
+
+    max-width: 500px;
+
+    margin-bottom: 17px;
+}
+
+
+/* RECORD DESCRIPTION */
+
+.archive-card p {
+    max-width: 450px;
+
+    color: #918a80;
+
+    font-size: 11px;
+
+    line-height: 1.75;
+}
+
+
+/* BOTTOM INFORMATION */
+
+.archive-card-bottom {
+    position: absolute;
+
+    left: 35px;
+    right: 35px;
+    bottom: 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 8px;
+
+    letter-spacing: 1.7px;
+
+    color: #706a62;
+}
+
+.open-record {
+    color: #d45a2a;
+}
+
+/* ==================================================
+   ARCHIVE RECORD OVERLAY
+================================================== */
+
+.record-overlay {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: #11100e;
+    color: #f0e9dc;
+
+    z-index: 9999;
+
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+
+/* WHEN RECORD IS OPEN */
+
+.record-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* MAIN CONTAINER */
+
+.record-shell {
+    width: 88%;
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding:
+        45px 0 100px;
+
+    position: relative;
+}
+
+
+/* CLOSE BUTTON */
+
+.close-record {
+    position: fixed;
+
+    top: 35px;
+    right: 5%;
+
+    z-index: 10001;
+
+    border: 1px solid rgba(240,233,220,.25);
+    background: #11100e;
+
+    color: #f0e9dc;
+
+    padding: 13px 18px;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.close-record:hover {
+    background: #d45a2a;
+    border-color: #d45a2a;
+    color: #11100e;
+}
+
+
+/* TOP METADATA */
+
+.record-top {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 25px;
+
+    border-bottom:
+        1px solid rgba(240,233,220,.18);
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.record-number {
+    color: #d45a2a;
+}
+
+.record-type {
+    color: #777067;
+
+    padding-right: 120px;
+}
+
+
+/* MAIN CONTENT */
+
+.record-content {
+    padding-top: 75px;
+}
+
+
+/* LARGE TITLE AREA */
+
+.record-heading {
+    display: grid;
+
+    grid-template-columns:
+        1.4fr .6fr;
+
+    gap: 80px;
+
+    align-items: end;
+}
+
+.record-heading h2 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(55px, 7vw, 100px);
+
+    line-height: .92;
+
+    letter-spacing: -3px;
+
+    font-weight: 500;
+}
+
+.record-heading h2 em {
+    color: #a69f94;
+
+    font-weight: 500;
+}
+
+.record-heading > p {
+    color: #999187;
+
+    font-size: 12px;
+    line-height: 1.9;
+
+    max-width: 380px;
+}
+
+
+/* DIVIDER */
+
+.record-divider {
+    height: 1px;
+
+    background:
+        rgba(240,233,220,.18);
+
+    margin: 75px 0;
+}
+
+/* ==================================================
+   ARCHIVE MEDIA / CARTOGRAPHIC DISPLAY
+================================================== */
+
+.record-media {
+    margin-bottom: 90px;
+}
+
+
+/* LARGE ARCHIVE PANEL */
+
+.record-media-placeholder {
+    min-height: 480px;
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 55px;
+
+    background:
+        linear-gradient(
+            rgba(212,90,42,.04),
+            rgba(212,90,42,.01)
+        ),
+        #181613;
+
+    border:
+        1px solid rgba(240,233,220,.14);
+}
+
+
+/* SMALL RECORD NUMBER */
+
+.media-index {
+    position: relative;
+    z-index: 2;
+
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2.5px;
+}
+
+
+/* MAIN MAP TITLE */
+
+.media-map-title {
+    position: absolute;
+
+    left: 55px;
+    bottom: 75px;
+
+    z-index: 2;
+
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(38px, 5vw, 72px);
+
+    line-height: .92;
+
+    letter-spacing: -2px;
+
+    color: #f0e9dc;
+}
+
+.media-map-title em {
+    color: #777067;
+    font-weight: 400;
+}
+
+
+/* MAP INFORMATION */
+
+.media-map-data {
+    position: absolute;
+
+    right: 45px;
+    top: 50px;
+
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    text-align: right;
+
+    color: #777067;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+}
+
+
+/* ABSTRACT CARTOGRAPHIC LINES */
+
+.media-map-lines {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .22;
+
+    pointer-events: none;
+}
+
+.media-map-lines span {
+    position: absolute;
+
+    width: 70%;
+    height: 170px;
+
+    border:
+        1px solid #d45a2a;
+
+    border-radius: 50%;
+
+    transform:
+        rotate(-12deg);
+}
+
+.media-map-lines span:nth-child(1) {
+    left: 25%;
+    top: 7%;
+}
+
+.media-map-lines span:nth-child(2) {
+    left: 12%;
+    top: 23%;
+
+    width: 82%;
+}
+
+.media-map-lines span:nth-child(3) {
+    left: 32%;
+    top: 39%;
+
+    width: 58%;
+}
+
+.media-map-lines span:nth-child(4) {
+    left: -8%;
+    top: 52%;
+
+    width: 77%;
+}
+
+.media-map-lines span:nth-child(5) {
+    left: 38%;
+    top: 65%;
+
+    width: 70%;
+}
+
+
+/* CAPTION BELOW PANEL */
+
+.record-media-caption {
+    display: grid;
+
+    grid-template-columns:
+        100px 1fr auto;
+
+    gap: 35px;
+
+    align-items: start;
+
+    padding-top: 18px;
+}
+
+.record-media-caption > span {
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.record-media-caption p {
+    max-width: 600px;
+
+    color: #777067;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* SOURCE BUTTON */
+
+.record-media-caption a {
+    color: #f0e9dc;
+
+    text-decoration: none;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+
+    padding-bottom: 6px;
+
+    border-bottom:
+        1px solid #d45a2a;
+
+    transition: .3s;
+}
+
+.record-media-caption a:hover {
+    color: #d45a2a;
+}
+
+/* ==================================================
+   A002 / THERMAL FIRE VISUALISATION
+================================================== */
+
+.thermal-panel {
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    padding: 55px;
+
+    background:
+        radial-gradient(
+            circle at 70% 45%,
+            rgba(212,90,42,.12),
+            transparent 28%
+        ),
+        #151310;
+
+    border: 1px solid rgba(240,233,220,.14);
+}
+
+
+/* TOP RIGHT INFORMATION */
+
+.thermal-coordinates {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+
+    text-align: right;
+
+    color: #777067;
+
+    font-size: 8px;
+    line-height: 1.8;
+    letter-spacing: 2px;
+}
+
+
+/* CENTRAL THERMAL FIELD */
+
+.thermal-field {
+    position: absolute;
+
+    width: 52%;
+    height: 72%;
+
+    right: 8%;
+    top: 15%;
+
+    border: 1px solid rgba(240,233,220,.1);
+
+    overflow: hidden;
+}
+
+
+/* SCIENTIFIC GRID */
+
+.thermal-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(240,233,220,.055) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(240,233,220,.055) 1px,
+            transparent 1px
+        );
+
+    background-size: 38px 38px;
+}
+
+
+/* HEAT ZONES */
+
+.heat-zone {
+    position: absolute;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,90,42,.9) 0%,
+            rgba(212,90,42,.45) 30%,
+            rgba(212,90,42,.08) 60%,
+            transparent 72%
+        );
+
+    filter: blur(2px);
+
+    opacity: .9;
+}
+
+
+.heat-1 {
+    width: 180px;
+    height: 110px;
+
+    left: 10%;
+    top: 18%;
+
+    transform: rotate(-20deg);
+}
+
+
+.heat-2 {
+    width: 130px;
+    height: 200px;
+
+    left: 42%;
+    top: 7%;
+
+    transform: rotate(28deg);
+}
+
+
+.heat-3 {
+    width: 210px;
+    height: 130px;
+
+    right: 3%;
+    top: 39%;
+
+    transform: rotate(-15deg);
+}
+
+
+.heat-4 {
+    width: 160px;
+    height: 105px;
+
+    left: 19%;
+    bottom: 7%;
+
+    transform: rotate(15deg);
+}
+
+
+.heat-5 {
+    width: 95px;
+    height: 150px;
+
+    left: 52%;
+    bottom: 3%;
+
+    transform: rotate(-30deg);
+}
+
+
+/* LARGE TITLE */
+
+.thermal-title {
+    position: absolute;
+
+    left: 55px;
+    bottom: 70px;
+
+    z-index: 4;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size:
+        clamp(38px, 5vw, 70px);
+
+    line-height: .92;
+
+    letter-spacing: -2px;
+
+    color: #f0e9dc;
+}
+
+.thermal-title em {
+    color: #d45a2a;
+    font-weight: 400;
+}
+
+
+/* THERMAL LEGEND */
+
+.thermal-legend {
+    position: absolute;
+
+    right: 50px;
+    bottom: 35px;
+
+    width: 180px;
+
+    z-index: 5;
+}
+
+.thermal-legend > span {
+    display: block;
+
+    color: #777067;
+
+    font-size: 7px;
+    letter-spacing: 1.8px;
+
+    margin-bottom: 8px;
+}
+
+
+.legend-line {
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(212,90,42,.08),
+            rgba(212,90,42,.35),
+            #d45a2a
+        );
+}
+
+
+.legend-labels {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color: #777067;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+}
+
+
+/* SUBTLE PULSE */
+
+@keyframes thermalPulse {
+
+    0%, 100% {
+        opacity: .65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.heat-zone {
+    animation:
+        thermalPulse 4s ease-in-out infinite;
+}
+
+.heat-2 {
+    animation-delay: .8s;
+}
+
+.heat-3 {
+    animation-delay: 1.5s;
+}
+
+.heat-4 {
+    animation-delay: 2.1s;
+}
+
+.heat-5 {
+    animation-delay: 2.8s;
+}
+
+/* ==================================================
+   A003 / PHOTOGRAPHIC ARCHIVE
+================================================== */
+
+.photo-archive-panel {
+    min-height: 520px;
+    position: relative;
+    overflow: hidden;
+    padding: 45px;
+    background: #171512;
+    border: 1px solid rgba(240,233,220,.14);
+}
+
+.photo-frame {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 90px;
+    bottom: 45px;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(17,16,14,.25),
+            rgba(17,16,14,.85)
+        ),
+        radial-gradient(
+            circle at 25% 65%,
+            rgba(212,90,42,.28),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #35302a 0%,
+            #1c1a17 45%,
+            #0d0c0b 100%
+        );
+
+    border: 1px solid rgba(240,233,220,.08);
+}
+
+.photo-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(240,233,220,.015) 4px
+        );
+
+    opacity: .5;
+    pointer-events: none;
+}
+
+.photo-frame::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #d45a2a;
+}
+
+.photo-placeholder-text {
+    position: absolute;
+    left: 45px;
+    bottom: 42px;
+    z-index: 2;
+}
+
+.photo-placeholder-text > span {
+    display: block;
+    color: #d45a2a;
+    font-size: 8px;
+    letter-spacing: 2.5px;
+    margin-bottom: 15px;
+}
+
+.photo-placeholder-text strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    color: #f0e9dc;
+
+    font-size: clamp(55px, 8vw, 105px);
+    line-height: .72;
+    font-weight: 500;
+    letter-spacing: -4px;
+}
+
+.photo-placeholder-text p {
+    margin-top: 25px;
+    color: #8e877d;
+    font-size: 8px;
+    line-height: 1.8;
+    letter-spacing: 1.8px;
+}
+
+.photo-marker {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+
+    color: rgba(240,233,220,.45);
+    font-size: 7px;
+    letter-spacing: 2px;
+
+    transform: rotate(90deg);
+    transform-origin: right top;
+}
+
+/* ==================================================
+   A004 / POLICY DOCUMENT
+================================================== */
+
+.policy-panel {
+    min-height: 540px;
+    position: relative;
+    overflow: hidden;
+    padding: 50px;
+
+    background: #171512;
+    border: 1px solid rgba(240,233,220,.14);
+}
+
+
+/* PAPER DOCUMENT */
+
+.policy-document {
+    position: absolute;
+
+    width: 42%;
+    min-height: 390px;
+
+    left: 9%;
+    top: 85px;
+
+    padding: 42px;
+
+    background: #e8e0d2;
+    color: #171512;
+
+    box-shadow:
+        20px 20px 50px rgba(0,0,0,.28);
+
+    transform: rotate(-2deg);
+}
+
+
+/* GOVERNMENT LABEL */
+
+.policy-doc-top {
+    font-size: 7px;
+    line-height: 1.7;
+    letter-spacing: 2px;
+
+    color: #5d574f;
+}
+
+
+/* YEAR */
+
+.policy-year {
+    position: absolute;
+
+    right: 35px;
+    top: 38px;
+
+    color: #d45a2a;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+
+/* DOCUMENT TITLE */
+
+.policy-document h3 {
+    margin-top: 80px;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size:
+        clamp(38px, 4vw, 60px);
+
+    line-height: .88;
+
+    letter-spacing: -2px;
+
+    font-weight: 500;
+}
+
+
+/* DOCUMENT RULE */
+
+.policy-rule {
+    width: 55px;
+    height: 3px;
+
+    background: #d45a2a;
+
+    margin: 30px 0;
+}
+
+
+.policy-document p {
+    color: #665f56;
+
+    font-size: 7px;
+    line-height: 2;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* LANGUAGE SIDE */
+
+.policy-language {
+    position: absolute;
+
+    right: 8%;
+    top: 105px;
+
+    width: 34%;
+}
+
+
+.policy-language > span {
+    display: block;
+
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    margin-bottom: 35px;
+}
+
+
+.policy-language div {
+    padding: 17px 0;
+
+    border-bottom:
+        1px solid rgba(240,233,220,.14);
+
+    color: #a69f94;
+
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(22px, 2.5vw, 36px);
+
+    transition: .3s;
+}
+
+
+.policy-language div:hover {
+    color: #f0e9dc;
+    padding-left: 12px;
+}
+
+
+/* SUBTLE DOCUMENT NUMBER */
+
+.policy-panel::after {
+    content: "04";
+
+    position: absolute;
+
+    right: -15px;
+    bottom: -65px;
+
+    font-family:
+        'Playfair Display', serif;
+
+    font-size: 230px;
+
+    line-height: 1;
+
+    color: rgba(240,233,220,.025);
+
+    pointer-events: none;
+}
+
+/* METADATA + INTERPRETATION */
+
+.record-information {
+    display: grid;
+
+    grid-template-columns:
+        .8fr 1.2fr;
+
+    gap: 100px;
+}
+
+
+/* METADATA */
+
+.record-metadata {
+    border-top:
+        1px solid rgba(240,233,220,.18);
+}
+
+.meta-row {
+    display: grid;
+
+    grid-template-columns:
+        110px 1fr;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom:
+        1px solid rgba(240,233,220,.12);
+}
+
+.meta-row span {
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.meta-row strong {
+    color: #c7bfb3;
+
+    font-size: 11px;
+
+    font-weight: 400;
+}
+
+
+/* ARCHIVAL READING */
+
+.record-small-label {
+    color: #d45a2a;
+
+    font-size: 9px;
+    letter-spacing: 2.5px;
+
+    margin-bottom: 20px;
+}
+
+.record-reading h3 {
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(30px, 3vw, 45px);
+
+    font-weight: 500;
+
+    margin-bottom: 30px;
+}
+
+.record-reading p {
+    max-width: 600px;
+
+    color: #999187;
+
+    font-size: 12px;
+    line-height: 1.9;
+
+    margin-bottom: 18px;
+}
+
+
+/* RELATED RECORD */
+
+.record-connection {
+    margin-top: 90px;
+
+    padding:
+        35px 0;
+
+    border-top:
+        1px solid rgba(240,233,220,.18);
+
+    border-bottom:
+        1px solid rgba(240,233,220,.18);
+}
+
+.record-connection span {
+    display: block;
+
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.record-connection strong {
+    display: block;
+
+    font-family:
+        'Playfair Display', serif;
+
+    font-size:
+        clamp(23px, 3vw, 38px);
+
+    font-weight: 500;
+}
+
+.record-connection p {
+    color: #777067;
+
+    font-size: 10px;
+
+    margin-top: 15px;
+}
+
+
+/* SOURCE */
+
+.record-source {
+    margin-top: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        180px 1fr;
+
+    gap: 40px;
+
+    max-width: 750px;
+}
+
+.record-source span {
+    color: #d45a2a;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.record-source p {
+    color: #777067;
+
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .subtitle {
+        margin-left: 0;
+    }
+
+    .hero-bottom,
+    .map-intro,
+    .stories-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 30px;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-offset {
+        margin-top: 0;
+    }
+
+    .story-visual {
+        height: 360px;
+    }
+
+    .word-entry {
+        grid-template-columns: 40px 1fr;
+    }
+
+    .word-meaning {
+        grid-column: 2;
+    }
+
+    .word-main {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .spatial-map {
+        height: 500px;
+    }
+
+    .location-jharia {
+        left: 15%;
+        top: 32%;
+    }
+
+    .location-belgaria {
+        left: 48%;
+        top: 62%;
+    }
+
+    .relationship-line {
+        left: 22%;
+        top: 42%;
+        width: 45%;
+        transform: rotate(35deg);
+    }
+
+    .coalfield-zone {
+        transform: scale(.75);
+    }
+
+}
+
+
+
+/* ==================================================
+   FINAL ARCHIVE MEDIA / A005–A008
+================================================== */
+.final-media-panel{min-height:430px;position:relative;overflow:hidden;padding:48px;background:#171512;border:1px solid rgba(240,233,220,.14)}
+.final-media-kicker{color:#d45a2a;font-size:8px;letter-spacing:2.4px;position:relative;z-index:3}
+.final-media-title{position:absolute;left:48px;bottom:52px;z-index:3;font-family:'Playfair Display',serif;font-size:clamp(42px,5.5vw,78px);line-height:.9;font-weight:500;letter-spacing:-2px}
+.final-media-title em{color:#a69f94;font-weight:500}
+.final-media-meta{position:absolute;right:48px;top:48px;text-align:right;color:#777067;font-size:8px;line-height:1.9;letter-spacing:1.8px;z-index:3}
+.belgaria-panel{background:linear-gradient(90deg,transparent 49.8%,rgba(212,90,42,.35) 50%,transparent 50.2%),linear-gradient(rgba(240,233,220,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(240,233,220,.035) 1px,transparent 1px),#171512;background-size:auto,48px 48px,48px 48px,auto}
+.belgaria-panel:after{content:'RESETTLEMENT / HOME / INFRASTRUCTURE';position:absolute;right:45px;bottom:42px;color:#d45a2a;font-size:7px;letter-spacing:2px}
+.video-panel{background:radial-gradient(circle at 67% 48%,rgba(212,90,42,.18),transparent 23%),#12110f}
+.video-play{position:absolute;right:16%;top:50%;transform:translateY(-50%);width:110px;height:110px;border:1px solid #d45a2a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d45a2a;font-size:25px;z-index:3}
+.video-panel:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(240,233,220,.018) 5px);pointer-events:none}
+.sound-panel{background:#151310}
+.sound-wave{position:absolute;right:7%;top:26%;width:50%;height:45%;display:flex;align-items:center;justify-content:space-between;gap:5px;opacity:.75}
+.sound-wave i{display:block;width:3px;background:#d45a2a;border-radius:3px}
+.sound-wave i:nth-child(1){height:15%}.sound-wave i:nth-child(2){height:42%}.sound-wave i:nth-child(3){height:68%}.sound-wave i:nth-child(4){height:32%}.sound-wave i:nth-child(5){height:88%}.sound-wave i:nth-child(6){height:55%}.sound-wave i:nth-child(7){height:100%}.sound-wave i:nth-child(8){height:38%}.sound-wave i:nth-child(9){height:74%}.sound-wave i:nth-child(10){height:26%}.sound-wave i:nth-child(11){height:61%}.sound-wave i:nth-child(12){height:18%}
+.revised-panel{background:linear-gradient(135deg,rgba(212,90,42,.08),transparent 45%),#171512}
+.revised-year{position:absolute;right:5%;bottom:-38px;font-family:'Playfair Display',serif;font-size:190px;line-height:1;color:rgba(240,233,220,.035)}
+.final-source-link{color:#f0e9dc;text-decoration:none;font-size:8px;letter-spacing:1.5px;padding-bottom:6px;border-bottom:1px solid #d45a2a;white-space:nowrap}.final-source-link:hover{color:#d45a2a}
+@media(max-width:760px){.final-media-panel{min-height:390px;padding:28px}.final-media-title{left:28px;bottom:42px;font-size:44px}.final-media-meta{right:28px;top:28px}.video-play{width:75px;height:75px;right:10%}.sound-wave{right:5%;width:55%}.record-media-caption{grid-template-columns:1fr;gap:14px}.record-heading,.record-information{grid-template-columns:1fr;gap:35px}.record-type{padding-right:70px}}
+
+
+/* FINAL RESEARCH + READABILITY CORRECTIONS */
+.research-spine{background:#171512;color:#f0e9dc;padding:42px 7% 46px;border-top:1px solid rgba(240,233,220,.14);border-bottom:1px solid rgba(240,233,220,.14)}
+.spine-status{color:#d45a2a;font-size:10px;letter-spacing:2.4px;margin-bottom:25px}
+.spine-chain{display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px}
+.spine-chain a{font-family:'Playfair Display',serif;color:#f0e9dc;text-decoration:none;font-size:clamp(17px,2vw,27px);transition:.25s}
+.spine-chain a:hover{color:#d45a2a}.spine-chain i{color:#d45a2a;font-style:normal}
+.research-spine p{max-width:850px;color:#9e978d;font-size:12px;line-height:1.8;margin-top:24px}
+.language-layers{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(17,16,14,.18)}
+.language-layer{padding:30px 30px 32px 0}.language-layer+.language-layer{padding-left:30px;border-left:1px solid rgba(17,16,14,.18)}
+.language-layer span{display:block;color:#d45a2a;font-size:10px;letter-spacing:2px;margin-bottom:12px}
+.language-layer strong{display:block;font-family:'Playfair Display',serif;font-size:25px;font-weight:500;margin-bottom:10px}
+.language-layer p{color:#665f56;font-size:12px;line-height:1.75;max-width:500px}
+.archive-journey{margin:-25px 0 55px;padding:28px 0;border-top:1px solid rgba(240,233,220,.18);border-bottom:1px solid rgba(240,233,220,.18)}
+.journey-label{color:#d45a2a;font-size:10px;letter-spacing:2.2px;margin-bottom:22px}
+.journey-chain{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.journey-chain button{border:0;background:transparent;color:#f0e9dc;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;padding:0}
+.journey-chain button span{display:block;color:#777067;font-size:10px;letter-spacing:1.5px;margin-bottom:5px}
+.journey-chain button strong{font-family:'Playfair Display',serif;font-size:clamp(14px,1.4vw,20px);font-weight:500}
+.journey-chain button:hover strong{color:#d45a2a}.journey-chain i{color:#d45a2a;font-style:normal;font-size:16px}
+.archive-journey>p{color:#817a70;font-size:11px;line-height:1.7;max-width:760px;margin-top:22px}
+.evidence-role{margin-top:18px;padding-left:12px;border-left:1px solid #d45a2a;max-width:390px}
+.evidence-role span{display:block;color:#d45a2a;font-size:10px;letter-spacing:1.6px;margin-bottom:5px}
+.evidence-role strong{display:block;color:#b7afa3;font-size:11px;font-weight:400;line-height:1.5}
+.timeline-record-link{border:0;border-bottom:1px solid #d45a2a;background:transparent;color:#d45a2a;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:1.5px;padding:0 0 6px;margin:0 0 18px;cursor:pointer}
+.timeline-record-link:hover{color:#f0e9dc}
+.location-label small,.location-label span,.map-caption,.map-legend,.story-visual>span,.story-type,.story-meta,.word-language,.words-note span,.timeline-label,.method-number,.framework-label,.source-number,.source-type,.footer-small,.footer-bottom,.archive-id,.archive-medium,.archive-card-bottom,.record-top,.media-index,.media-map-data,.record-media-caption>span,.record-media-caption a,.close-record{font-size:10px}
+.archive-card p,.method-card p,.ethics-content p,.words-note p{font-size:12px}
+.archive-card{min-height:390px;padding-bottom:75px}
+
+.research-question .rq-label{font-size:12px;letter-spacing:2.4px;color:#d45a2a;font-weight:600;text-transform:uppercase}
+.record-evidence-role{margin:34px 0 18px;padding:22px 24px;border:1px solid rgba(212,90,42,.35);background:rgba(212,90,42,.045)}
+.record-evidence-role span{display:block;color:#d45a2a;font-size:11px;letter-spacing:1.8px;margin-bottom:9px}
+.record-evidence-role p{margin:0;color:inherit;font-size:14px;line-height:1.65}
+@media(max-width:900px){.journey-chain{justify-content:flex-start;flex-wrap:wrap}.journey-chain i{display:none}.journey-chain button{width:calc(25% - 8px);padding:10px 0}}
+@media(max-width:760px){.language-layers{grid-template-columns:1fr}.language-layer+.language-layer{padding-left:0;border-left:0;border-top:1px solid rgba(17,16,14,.18)}.journey-chain button{width:calc(50% - 8px)}.spine-chain{gap:9px 12px}}
+
+
+/* ===== FINAL RESEARCH ENHANCEMENTS ===== */
+.research-question{min-height:68vh;padding:110px 7% 120px;background:#11100e;border-top:1px solid rgba(240,233,220,.14);border-bottom:1px solid rgba(240,233,220,.14);display:flex;flex-direction:column;justify-content:center}
+.rq-label{font-size:11px;letter-spacing:2.4px;color:#d45a2a;margin-bottom:28px}
+.research-question h2{font-family:'Playfair Display',serif;font-size:clamp(52px,6.6vw,104px);line-height:1.01;font-weight:500;letter-spacing:-3px;max-width:1380px;margin:18px 0 0;color:#f0e9dc}
+.research-question p{max-width:760px;margin:42px 0 0 auto;font-size:16px;line-height:1.75;color:#b7afa3}
+.evidence-network{height:650px}
+.evidence-node{position:absolute;display:flex;align-items:center;gap:10px;border:0;background:transparent;text-align:left;cursor:pointer;z-index:5;font-family:'DM Sans',sans-serif}
+.evidence-node>i{width:14px;height:14px;flex:0 0 14px;background:#d45a2a;border-radius:50%;box-shadow:0 0 0 6px rgba(212,90,42,.12)}
+.evidence-node>span{background:rgba(240,233,220,.96);border-left:1px solid #d45a2a;padding:9px 11px;min-width:135px;box-shadow:0 5px 18px rgba(17,16,14,.06)}
+.evidence-node small,.evidence-node em{display:block;font-style:normal;font-size:10px;letter-spacing:1.2px;color:#756d63}
+.evidence-node small{color:#d45a2a;margin-bottom:4px}.evidence-node strong{display:block;font-family:'Playfair Display',serif;font-size:17px;font-weight:500;margin-bottom:3px}
+.evidence-node:hover>span{transform:translateY(-2px);box-shadow:0 8px 24px rgba(17,16,14,.12)}
+.type-rehab>i{border-radius:0;transform:rotate(45deg);background:#11100e;border:2px solid #d45a2a;box-shadow:none}.type-documentary>i{border-radius:0;background:#11100e;box-shadow:none}.type-fire>i{background:transparent;border:2px solid #d45a2a;box-shadow:0 0 0 5px rgba(212,90,42,.09)}
+.node-jharia{left:38%;top:42%}.node-boka{left:17%;top:62%}.node-belgaria{left:68%;top:58%}.node-karmatand{left:72%;top:23%}.node-ena{left:18%;top:23%}.node-sendra{left:45%;top:15%}.node-kujama{left:47%;top:72%}
+.network-line{position:absolute;height:1px;background:repeating-linear-gradient(90deg,rgba(212,90,42,.65) 0 5px,transparent 5px 11px);transform-origin:left center;z-index:2}.nl1{left:25%;top:32%;width:23%;transform:rotate(24deg)}.nl2{left:47%;top:47%;width:27%;transform:rotate(17deg)}.nl3{left:48%;top:45%;width:30%;transform:rotate(-32deg)}.nl4{left:28%;top:66%;width:23%;transform:rotate(-30deg)}.nl5{left:49%;top:48%;width:14%;transform:rotate(76deg)}
+.legend-square{width:9px;height:9px;background:#11100e}.fire-key{background:transparent;border:2px solid #d45a2a}.settlement-key{background:#d45a2a}
+.language-layers{margin-top:45px}.language-layer{padding-top:30px;padding-bottom:32px}.language-layer span{font-size:11px}.language-layer strong{font-size:28px}.language-layer p{font-size:13px}.future-language{background:rgba(17,16,14,.035);padding-right:25px}.language-bridge{margin-top:18px!important;color:#d45a2a!important;font-size:11px!important;letter-spacing:1.2px}
+.word-term{font-size:clamp(38px,5vw,72px)!important;letter-spacing:-2px}.word-entry:nth-child(even) .word-term{font-style:italic;color:#756d63}.word-meaning{font-size:13px!important}
+.record-limitation{margin-top:26px;padding:20px 22px;border-left:2px solid #d45a2a;background:rgba(212,90,42,.06)}.record-limitation span{display:block;font-size:11px;letter-spacing:1.6px;color:#d45a2a;margin-bottom:9px}.record-limitation p{font-size:13px;line-height:1.7;margin:0;color:#665f56}
+.archive-synthesis{padding:90px 7%;background:#171512;color:#f0e9dc;border-top:1px solid rgba(240,233,220,.14)}.archive-synthesis .section-number{color:#d45a2a}.synthesis-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:8vw;margin-top:55px;align-items:end}.synthesis-grid h2{font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,68px);font-weight:500;line-height:1.08;margin:0}.synthesis-grid p{font-family:'Playfair Display',serif;font-size:25px;line-height:1.4;color:#a69f94}.synthesis-grid strong{display:block;margin-top:26px;font-size:14px;line-height:1.8;font-weight:400;color:#f0e9dc}
+.timeline-label,.timeline-record-link,.archive-id,.archive-medium,.record-small-label,.meta-row span,.record-source span{font-size:11px!important}.timeline-event p,.archive-description,.record-reading p,.record-source p{font-size:13px!important}
+@media(max-width:900px){.evidence-network{height:760px}.node-jharia{left:34%;top:40%}.node-boka{left:5%;top:65%}.node-belgaria{left:55%;top:61%}.node-karmatand{left:58%;top:18%}.node-ena{left:4%;top:19%}.node-sendra{left:35%;top:6%}.node-kujama{left:35%;top:78%}.synthesis-grid{grid-template-columns:1fr}.research-question{min-height:auto;padding:76px 7% 84px}.research-question h2{font-size:clamp(42px,10vw,68px);letter-spacing:-1.8px}.research-question p{font-size:14px;margin-top:30px}}
+@media(max-width:620px){.evidence-network{height:900px}.evidence-node>span{min-width:115px}.evidence-node strong{font-size:15px}.node-jharia{left:28%;top:42%}.node-boka{left:2%;top:68%}.node-belgaria{left:48%;top:60%}.node-karmatand{left:48%;top:20%}.node-ena{left:2%;top:22%}.node-sendra{left:25%;top:5%}.node-kujama{left:27%;top:80%}}
+
+
+/* A006 credited audiovisual pair */
+.a006-video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0 34px}.a006-video-card{border:1px solid rgba(240,233,220,.18);background:#151411;padding:14px}.a006-video-frame{position:relative;aspect-ratio:16/9;background:#090909;overflow:hidden}.a006-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.a006-video-lang{font-size:11px;letter-spacing:.14em;color:#D45A2A;margin:13px 0 8px}.a006-video-card h4{font-family:'Playfair Display',serif;font-size:22px;line-height:1.15;font-weight:400;margin:0 0 10px;color:#F0E9DC}.a006-video-credit{font-size:12px;line-height:1.65;color:#A69F94;margin:0 0 10px}.a006-video-note{font-size:11px;line-height:1.55;color:#817b72;border-top:1px solid rgba(240,233,220,.12);padding-top:10px}.a006-video-card a{font-size:11px;letter-spacing:.1em;color:#D45A2A;text-decoration:none}.a006-video-heading{margin:34px 0 12px;font-size:11px;letter-spacing:.16em;color:#D45A2A}.a006-video-intro{max-width:760px;font-size:13px;line-height:1.7;color:#A69F94;margin-bottom:18px}@media(max-width:760px){.a006-video-grid{grid-template-columns:1fr}}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAVIGATION
+================================================== -->
+
+<nav>
+
+    <div class="logo">
+        JHARIA ARCHIVE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#map">Map</a>
+        <a href="#stories">Stories</a>
+        <a href="#words">Words</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+
+    </div>
+
+</nav>
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<section class="hero">
+
+    <div class="coordinate left">
+        JHARIA COALFIELD / SPATIAL ARCHIVE
+    </div>
+
+    <div class="coordinate right">
+        DHANBAD DISTRICT / JHARKHAND / INDIA
+    </div>
+
+    <div class="fire-line"></div>
+    <div class="fire-dot"></div>
+
+    <div class="hero-content">
+
+        <div class="archive-label">
+            Digital Spatial–Linguistic Archive
+        </div>
+
+        <h1>
+            JHARIA
+        </h1>
+
+        <div class="subtitle">
+            a landscape in motion.
+        </div>
+
+        <div class="hero-bottom">
+
+            <p class="description">
+
+                An experimental digital archive tracing how
+                coal-fire-induced displacement transforms
+                place, memory and language across Jharia's
+                changing landscape.
+
+            </p>
+
+            <a class="explore" href="#map">
+
+                Explore the archive
+
+                <span class="arrow">
+                    ↓
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="research-spine" aria-label="Archive research framework">
+    <div class="spine-status">EVIDENCE-BASED ARCHIVE / INTERPRETIVE SPATIAL INTERFACE</div>
+    <div class="spine-chain">
+        <a href="#map">PLACE</a><i>→</i><a href="#map">ENVIRONMENTAL CHANGE</a><i>→</i>
+        <a href="#stories">DISPLACEMENT</a><i>→</i><a href="#stories">PERSON / MEMORY</a><i>→</i>
+        <a href="#words">LANGUAGE</a><i>→</i><a href="#archive">ARCHIVAL EVIDENCE</a>
+    </div>
+    <p>Conventional maps can record territory and rehabilitation plans can record affected populations, but neither alone preserves how displacement transforms place, memory and language. This archive connects multiple forms of evidence within one relational system.</p>
+</section>
+
+<section class="research-question" aria-label="Research question">
+    <div class="rq-label">RESEARCH QUESTION</div>
+    <h2>How can a digital spatial-linguistic archive reveal forms of displacement that conventional maps and rehabilitation records fail to preserve?</h2>
+    <p>The archive tests this question by placing spatial, institutional, visual, audiovisual and linguistic evidence in relation rather than treating any single source as complete.</p>
+</section>
+
+
+<!-- ==================================================
+     SPATIAL ARCHIVE
+================================================== -->
+
+<section id="map">
+
+    <div class="section-number">
+        01 / EXPLORE
+    </div>
+
+    <div class="map-intro">
+
+        <h2>
+            Reading a landscape<br>
+            <em>shaped by fire.</em>
+        </h2>
+
+        <p>
+            An interpretive spatial diagram connecting the
+            Jharia coalfield context with rehabilitation and
+            displacement. It is designed as an archival reading
+            of territory rather than a survey map.
+        </p>
+
+    </div>
+
+
+    <div class="spatial-map evidence-network">
+        <div class="coalfield-zone zone-one"></div><div class="coalfield-zone zone-two"></div><div class="coalfield-zone zone-three"></div>
+        <div class="network-line nl1"></div><div class="network-line nl2"></div><div class="network-line nl3"></div><div class="network-line nl4"></div><div class="network-line nl5"></div>
+
+        <button class="evidence-node node-jharia type-settlement" onclick="openRecord('record1')"><i></i><span><small>COALFIELD / TERRITORY</small><strong>Jharia Coalfield</strong><em>A001 + A002 / LAND + FIRE</em></span></button>
+        <button class="evidence-node node-boka type-documentary" onclick="openRecord('record6')"><i></i><span><small>DOCUMENTARY EVIDENCE</small><strong>Boka Pahari</strong><em>A006 / VIDEO + VOICE</em></span></button>
+        <button class="evidence-node node-belgaria type-rehab" onclick="openRecord('record5')"><i></i><span><small>REHABILITATION</small><strong>Belgaria</strong><em>A005 / RESETTLEMENT</em></span></button>
+        <button class="evidence-node node-karmatand type-rehab" onclick="openRecord('record8')"><i></i><span><small>REHABILITATION</small><strong>Karmatand</strong><em>A008 / REVISED PLAN</em></span></button>
+        <button class="evidence-node node-ena type-fire" onclick="openRecord('record2')"><i></i><span><small>FIRE</small><strong>Ena / Kusunda</strong><em>FIRE MANAGEMENT EVIDENCE</em></span></button>
+        <button class="evidence-node node-sendra type-fire" onclick="openRecord('record2')"><i></i><span><small>SUBSIDENCE</small><strong>Sendra–Bansjora</strong><em>LAND INSTABILITY EVIDENCE</em></span></button>
+        <button class="evidence-node node-kujama type-fire" onclick="openRecord('record2')"><i></i><span><small>FIRE-AFFECTED SITE</small><strong>Kujama</strong><em>FIRE / TERRITORY</em></span></button>
+
+        <div class="map-caption caption-one">DIGITAL SPATIAL ARCHIVE / EVIDENCE NETWORK</div>
+        <div class="map-caption caption-two">PLACE → EVIDENCE → DISPLACEMENT</div>
+    </div>
+
+    <div class="map-legend">
+        <div class="legend-item"><span class="legend-dot settlement-key"></span>Settlement / Territory</div>
+        <div class="legend-item"><span class="legend-dot fire-key"></span>Fire / Subsidence</div>
+        <div class="legend-item"><span class="legend-diamond"></span>Rehabilitation</div>
+        <div class="legend-item"><span class="legend-square"></span>Documentary Evidence</div>
+        <div class="legend-item"><span class="legend-line"></span>Archival Relationship</div>
+    </div>
+
+    <p class="map-disclaimer">
+        This diagram is an interpretive archive interface rather
+        than a survey-accurate GIS map. Connections indicate relationships between places and archival evidence and should not be read as verified individual displacement routes.
+    </p>
+
+</section>
+
+
+<!-- ==================================================
+     STORIES
+================================================== -->
+
+<section id="stories">
+
+    <div class="stories-header">
+
+        <div class="section-number">
+            02 / STORIES
+        </div>
+
+        <div class="stories-title-row">
+
+            <h2>
+                Three conditions<br>
+                <em>of displacement.</em>
+            </h2>
+
+            <p>
+                Three thematic readings trace how environmental change,
+                movement and rehabilitation reshape relationships
+                with home, place and memory. These are interpretive
+                research themes rather than invented personal testimonies.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="story-grid">
+
+
+        <!-- STORY 01 -->
+
+        <article class="story-card">
+
+            <div class="story-number">
+                01
+            </div>
+
+            <div class="story-visual visual-fire">
+
+                <span>
+                    PLACE / LANDSCAPE
+                </span>
+
+                <div class="story-symbol">
+                    ◯
+                </div>
+
+            </div>
+
+            <div class="story-info">
+
+                <div class="story-type">
+                    LIVING WITH FIRE
+                </div>
+
+                <h3>
+                    Living with<br>
+                    unstable ground
+                </h3>
+
+                <p>
+                    A spatial record examining settlement,
+                    environmental risk and the changing physical
+                    conditions of the Jharia coalfield.
+                </p>
+
+                <div class="story-meta">
+
+                    <span>JHARIA</span>
+                    <span>ARCHIVE 001</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- STORY 02 -->
+
+        <article class="story-card story-offset">
+
+            <div class="story-number">
+                02
+            </div>
+
+            <div class="story-visual visual-memory">
+
+                <span>
+                    MEMORY / MOVEMENT
+                </span>
+
+                <div class="story-symbol">
+                    ↗
+                </div>
+
+            </div>
+
+            <div class="story-info">
+
+                <div class="story-type">
+                    LEAVING PLACE
+                </div>
+
+                <h3>
+                    Leaving one place,<br>
+                    inhabiting another
+                </h3>
+
+                <p>
+                    This record considers displacement not only
+                    as physical movement, but as a transformation
+                    of memory, identity and attachment to place.
+                </p>
+
+                <div class="story-meta">
+
+                    <span>JHARIA COALFIELD</span>
+                    <span>ARCHIVE 002</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- STORY 03 -->
+
+        <article class="story-card">
+
+            <div class="story-number">
+                03
+            </div>
+
+            <div class="story-visual visual-relocation">
+
+                <span>
+                    RESETTLEMENT / PLACE
+                </span>
+
+                <div class="story-symbol">
+                    ◆
+                </div>
+
+            </div>
+
+            <div class="story-info">
+
+                <div class="story-type">
+                    REBUILDING HOME
+                </div>
+
+                <h3>
+                    Reconstructing<br>
+                    a sense of home
+                </h3>
+
+                <p>
+                    A record examining the spatial transition
+                    between coalfield settlements and planned
+                    rehabilitation environments.
+                </p>
+
+                <div class="story-meta">
+
+                    <span>BELGARIA</span>
+                    <span>ARCHIVE 003</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     WORDS
+================================================== -->
+
+<section id="words">
+
+    <div class="words-header">
+
+        <div class="section-number">
+            03 / WORDS
+        </div>
+
+        <h2>
+            A landscape<br>
+            <em>spoken and classified.</em>
+        </h2>
+
+        <p class="words-intro">
+            Language forms another map of Jharia.
+            This section traces key terms through which the
+            coalfield landscape is described, classified and
+            transformed — from fire and subsidence to
+            rehabilitation and displacement.
+        </p>
+
+    </div>
+
+
+    <div class="language-layers">
+        <div class="language-layer documented-now">
+            <span>DOCUMENTED NOW</span>
+            <strong>Institutional vocabulary</strong>
+            <p>Institutional vocabulary derived from policy, planning and environmental evidence.</p>
+        </div>
+        <div class="language-layer future-language">
+            <span>ARCHIVE TO BE DEVELOPED</span>
+            <strong>Verified lived language</strong>
+            <p>Verified multilingual speech, place names, oral testimony, expressions and resident terminology.</p>
+            <p class="language-bridge">A006 / DOCUMENTARY VOICE &nbsp;→&nbsp; A007 / CULTURAL + LABOUR MEMORY</p>
+        </div>
+    </div>
+
+    <div class="word-list">
+
+
+        <!-- 01 -->
+
+        <div class="word-entry">
+
+            <div class="word-number">
+                01
+            </div>
+
+            <div class="word-main">
+
+                <div class="word-term">
+                    SUBSIDENCE
+                </div>
+
+                <div class="word-language">
+                    LAND / INSTABILITY
+                </div>
+
+            </div>
+
+            <div class="word-meaning">
+                The sinking or downward movement of ground.
+                In Jharia, subsidence is closely connected
+                with unstable and fire-affected coalfield areas.
+            </div>
+
+        </div>
+
+
+        <!-- 02 -->
+
+        <div class="word-entry">
+
+            <div class="word-number">
+                02
+            </div>
+
+            <div class="word-main">
+
+                <div class="word-term">
+                    FIRE
+                </div>
+
+                <div class="word-language">
+                    COAL / ENVIRONMENT
+                </div>
+
+            </div>
+
+            <div class="word-meaning">
+                Underground coal fire is a long-term condition
+                shaping land, safety and habitation across
+                parts of the Jharia coalfield.
+            </div>
+
+        </div>
+
+
+        <!-- 03 -->
+
+        <div class="word-entry">
+
+            <div class="word-number">
+                03
+            </div>
+
+            <div class="word-main">
+
+                <div class="word-term">
+                    REHABILITATION
+                </div>
+
+                <div class="word-language">
+                    PEOPLE / DISPLACEMENT
+                </div>
+
+            </div>
+
+            <div class="word-meaning">
+                The institutional process associated with
+                moving affected families away from vulnerable
+                locations and supporting their resettlement.
+            </div>
+
+        </div>
+
+
+        <!-- 04 -->
+
+        <div class="word-entry">
+
+            <div class="word-number">
+                04
+            </div>
+
+            <div class="word-main">
+
+                <div class="word-term">
+                    UNSTABLE AREA
+                </div>
+
+                <div class="word-language">
+                    RISK / TERRITORY
+                </div>
+
+            </div>
+
+            <div class="word-meaning">
+                A spatial category used in Jharia planning
+                to describe areas affected by ground instability,
+                informing decisions around safety and rehabilitation.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="words-note">
+
+        <span>
+            ARCHIVE NOTE
+        </span>
+
+        <p>
+            These entries document terminology used to describe
+            Jharia's changing landscape. A future oral-history layer
+            could separately record multilingual speech, expressions,
+            place names and resident testimony with verified speaker
+            and source information.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     JHARIA THROUGH TIME
+================================================== -->
+
+<section id="timeline">
+
+    <div class="section-number">
+        04 / THROUGH TIME
+    </div>
+
+
+    <div class="timeline-header">
+
+        <h2>
+            A century beneath<br>
+            <em>the burning ground.</em>
+        </h2>
+
+        <p class="timeline-intro">
+            Jharia's present landscape is the result of
+            overlapping histories of coal extraction, underground
+            fire, land instability, state intervention and
+            rehabilitation.
+        </p>
+
+    </div>
+
+
+    <div class="timeline-list">
+
+
+        <!-- 1890s -->
+
+        <div class="timeline-item">
+
+            <div class="timeline-year">
+                1890s
+            </div>
+
+            <div class="timeline-event">
+
+                <div class="timeline-label">
+                    EXTRACTION / LAND
+                </div>
+
+                <h3>
+                    Expansion of private mining
+                </h3>
+
+                <p>
+                    Private mine ownership and expanding coal
+                    extraction shaped the early industrial landscape
+                    of the Jharia Coalfield.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 1916 -->
+
+        <div class="timeline-item">
+
+            <div class="timeline-year">
+                1916
+            </div>
+
+            <div class="timeline-event">
+
+                <div class="timeline-label">
+                    FIRE / ENVIRONMENT
+                </div>
+
+                <h3>
+                    Mine fire documented
+                </h3>
+
+                <p>
+                    BCCL records the outbreak of coal-mine fire
+                    in the Jharia Coalfield as early as 1916.
+                    Fire would become one of the defining conditions
+                    of the region's changing landscape.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 1929 -->
+        <div class="timeline-item">
+            <div class="timeline-year">1929</div>
+            <div class="timeline-event">
+                <div class="timeline-label">GEOLOGICAL MAPPING / ARCHIVE EVIDENCE</div>
+                <h3>Mapping the coalfield</h3>
+                <button class="timeline-record-link" onclick="openRecord('record1')">RELATED EVIDENCE / A001 ↗</button>
+                <p>A Geological Survey of India map provides an early cartographic record of the Jharia Coalfield, allowing later fire and displacement evidence to be read against an earlier geological representation.</p>
+            </div>
+        </div>
+
+        <!-- 1971–73 -->
+
+        <div class="timeline-item">
+
+            <div class="timeline-year">
+                1971–73
+            </div>
+
+            <div class="timeline-event">
+
+                <div class="timeline-label">
+                    NATIONALISATION / GOVERNANCE
+                </div>
+
+                <h3>
+                    A new institutional landscape
+                </h3>
+
+                <p>
+                    India's coal industry entered the nationalisation
+                    period. Bharat Coking Coal Limited was incorporated
+                    in 1972 to operate coking-coal mines including
+                    those of the Jharia Coalfield.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2009 -->
+
+        <div class="timeline-item">
+
+            <div class="timeline-year">
+                2009
+            </div>
+
+            <div class="timeline-event">
+
+                <div class="timeline-label">
+                    MASTER PLAN / REHABILITATION
+                </div>
+
+                <h3>
+                    Jharia Master Plan
+                </h3>
+                <button class="timeline-record-link" onclick="openRecord('record4')">RELATED EVIDENCE / A004 ↗</button>
+
+                <p>
+                    In August 2009, the Government approved a
+                    Master Plan addressing fire, subsidence,
+                    rehabilitation and the diversion of surface
+                    infrastructure in the Jharia and Raniganj
+                    coalfields.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2019 -->
+        <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-event">
+                <div class="timeline-label">REMOTE SENSING / FIRE</div>
+                <h3>Thermal mapping makes subsurface fire visible</h3>
+                <button class="timeline-record-link" onclick="openRecord('record2')">RELATED EVIDENCE / A002 ↗</button>
+                <p>Published thermal-infrared research used spaceborne data to detect and delineate subsurface coal-mine fire, adding a contemporary sensing layer to the archive.</p>
+            </div>
+        </div>
+
+        <!-- 2025 -->
+
+        <div class="timeline-item current">
+
+            <div class="timeline-year">
+                2025
+            </div>
+
+            <div class="timeline-event">
+
+                <div class="timeline-label">
+                    REVISED PLAN / PRESENT
+                </div>
+
+                <h3>
+                    Rehabilitation reconfigured
+                </h3>
+                <button class="timeline-record-link" onclick="openRecord('record8')">RELATED EVIDENCE / A008 ↗</button>
+
+                <p>
+                    On 25 June 2025, the Cabinet approved the
+                    Revised Jharia Master Plan, focusing on fire,
+                    land subsidence and rehabilitation of affected
+                    families, with priority given to vulnerable sites.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="timeline-end">
+
+        <div class="timeline-end-line"></div>
+
+        <p>
+            THE ARCHIVE READS THESE EVENTS NOT AS ISOLATED DATES,
+            BUT AS LAYERS THAT CONTINUE TO SHAPE LAND, MOVEMENT,
+            MEMORY AND EVERYDAY LIFE.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     ARCHIVE RECORDS
+================================================== -->
+
+<!-- ==================================================
+     ARCHIVE RECORDS
+================================================== -->
+
+<section id="archive">
+
+    <div class="section-number">
+        05 / ARCHIVE RECORDS
+    </div>
+
+    <div class="archive-header">
+
+        <h2>
+            Eight ways of<br>
+            <em>reading Jharia.</em>
+        </h2>
+
+        <p>
+            Maps, scientific evidence, photography, policy,
+            testimony and cultural expression are brought
+            together as interconnected records. No single
+            document can fully describe a landscape undergoing
+            displacement.
+        </p>
+
+    </div>
+
+
+    <div class="archive-journey">
+        <div class="journey-label">RELATIONAL ARCHIVE / EVIDENCE PATH</div>
+        <div class="journey-chain">
+            <button onclick="openRecord('record1')"><span>A001</span><strong>LAND</strong></button><i>→</i>
+            <button onclick="openRecord('record2')"><span>A002</span><strong>FIRE</strong></button><i>→</i>
+            <button onclick="openRecord('record3')"><span>A003</span><strong>LIFE</strong></button><i>→</i>
+            <button onclick="openRecord('record4')"><span>A004</span><strong>POLICY</strong></button><i>→</i>
+            <button onclick="openRecord('record5')"><span>A005</span><strong>RELOCATION</strong></button><i>→</i>
+            <button onclick="openRecord('record6')"><span>A006</span><strong>VOICE</strong></button><i>→</i>
+            <button onclick="openRecord('record7')"><span>A007</span><strong>MEMORY</strong></button><i>→</i>
+            <button onclick="openRecord('record8')"><span>A008</span><strong>FUTURE</strong></button>
+        </div>
+        <p>Read the archive as connected evidence: territory → environmental change → everyday life → policy → relocation → voice → memory → future.</p>
+    </div>
+
+    <div class="archive-grid">
+
+
+        <!-- A001 -->
+
+        <article class="archive-card" onclick="openRecord('record1')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A001</span>
+                <span class="archive-medium">HISTORICAL MAP / 1929</span>
+            </div>
+
+            <h3>
+                Mapping coal<br>
+                before displacement
+            </h3>
+
+            <p>
+                An early geological reading of the Jharia Coalfield,
+                documenting coal-bearing territory before contemporary
+                fire and rehabilitation mapping.
+            </p>
+
+
+
+
+
+            <div class="archive-card-bottom">
+                <span>JHARIA COALFIELD</span>
+                <span class="open-record">OPEN RECORD ↗</span>
+            </div>
+
+        </article>
+
+
+        <!-- A002 -->
+
+        <article class="archive-card" onclick="openRecord('record2')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A002</span>
+                <span class="archive-medium">REMOTE SENSING / 2019</span>
+            </div>
+
+            <h3>
+                Making underground<br>
+                fire visible
+            </h3>
+
+            <p>
+                Spaceborne thermal infrared data is used to detect
+                and delineate subsurface coal-mine fire across the
+                Jharia Coalfield.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>FIRE / LAND / GIS</span>
+                <span class="open-record">OPEN RECORD ↗</span>
+            </div>
+
+        </article>
+
+
+        <!-- A003 -->
+
+        <article class="archive-card" onclick="openRecord('record3')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A003</span>
+                <span class="archive-medium">PHOTO ESSAY / 2009</span>
+            </div>
+
+            <h3>
+                Living above<br>
+                the fire
+            </h3>
+
+            <p>
+                Photography and reportage document everyday life
+                around burning coal seams, connecting environmental
+                danger with livelihood, family and settlement.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>JHARIA / EVERYDAY LIFE</span>
+                <span class="open-record">VIEW RECORD ↗</span>
+            </div>
+
+        </article>
+
+
+        <!-- A004 -->
+
+        <article class="archive-card" onclick="openRecord('record4')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A004</span>
+                <span class="archive-medium">POLICY / 2009</span>
+            </div>
+
+            <h3>
+                When land becomes<br>
+                “endangered”
+            </h3>
+
+            <p>
+                The Jharia Master Plan translates fire, subsidence
+                and settlement into institutional categories of risk,
+                affected areas and rehabilitation.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>MASTER PLAN / LANGUAGE</span>
+                <span class="open-record">OPEN RECORD ↗</span>
+            </div>
+
+        </article>
+
+
+        <!-- A005 -->
+
+        <article class="archive-card" onclick="openRecord('record5')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A005</span>
+                <span class="archive-medium">RESETTLEMENT / BELGARIA</span>
+            </div>
+
+            <h3>
+                Belgaria:<br>
+                after displacement
+            </h3>
+
+            <p>
+                A rehabilitation landscape through which the archive
+                asks how relocation transforms home, infrastructure,
+                livelihood and relationships with place.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>BELGARIA / HOME</span>
+                <span class="open-record">OPEN RECORD ↗</span>
+            </div>
+
+        </article>
+
+
+        <!-- A006 -->
+
+        <article class="archive-card" onclick="openRecord('record6')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A006</span>
+                <span class="archive-medium">DOCUMENTARY / 2011</span>
+            </div>
+
+            <h3>
+                Voices from<br>
+                Boka Pahari
+            </h3>
+
+            <p>
+                Documentary footage brings residents and everyday
+                coalfield life into the archive, adding human voices
+                to spatial and institutional evidence.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>BOKA PAHARI / VOICE</span>
+                <span class="open-record">WATCH RECORD ▶</span>
+            </div>
+
+        </article>
+
+
+        <!-- A007 -->
+
+        <article class="archive-card" onclick="openRecord('record7')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A007</span>
+                <span class="archive-medium">SONG / 2023</span>
+            </div>
+
+            <h3>
+                The Mineworkers’<br>
+                Song
+            </h3>
+
+            <p>
+                A cultural record through which labour, mining
+                experience and memory enter the archive through
+                song rather than institutional documentation.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>LABOUR / MEMORY / VOICE</span>
+                <span class="open-record">LISTEN / EXPLORE ↗</span>
+            </div>
+
+        </article>
+
+
+        <!-- A008 -->
+
+        <article class="archive-card" onclick="openRecord('record8')">
+
+            <div class="archive-card-top">
+                <span class="archive-id">ARCHIVE / A008</span>
+                <span class="archive-medium">POLICY / 2025</span>
+            </div>
+
+            <h3>
+                Rehabilitation<br>
+                redefined
+            </h3>
+
+            <p>
+                The Revised Jharia Master Plan provides a contemporary
+                policy layer for examining how rehabilitation,
+                livelihood and resettlement are being reframed.
+            </p>
+
+            <div class="archive-card-bottom">
+                <span>POLICY / FUTURE</span>
+                <span class="open-record">OPEN RECORD ↗</span>
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     ABOUT THE ARCHIVE
+================================================== -->
+
+<section class="archive-synthesis" aria-label="What the archive reveals">
+    <div class="section-number">SYNTHESIS / WHAT THE ARCHIVE REVEALS</div>
+    <div class="synthesis-grid">
+        <h2>Land can be mapped.<br>Fire can be detected.<br>Risk can be classified.<br>Families can be relocated.</h2>
+        <div><p>But displacement also transforms memory, language, belonging and the meaning of home.</p><strong>The archive therefore treats displacement not as a single movement between two locations, but as a continuing transformation of place.</strong></div>
+    </div>
+</section>
+
+<section id="about">
+
+    <div class="section-number">
+        06 / ABOUT THE ARCHIVE
+    </div>
+
+
+    <div class="about-hero">
+
+        <h2>
+            Preserving more<br>
+            than <em>place.</em>
+        </h2>
+
+
+        <div class="about-statement">
+
+            <div class="large-text">
+                What happens to a place when the ground
+                beneath it can no longer be trusted?
+            </div>
+
+            <p>
+                The Digital Spatial-Linguistic Archive of Jharia
+                is conceived as an experimental research interface
+                for reading coal-fire-induced displacement through
+                multiple forms of evidence.
+            </p>
+
+            <p style="margin-top:15px;">
+                Rather than treating displacement only as movement
+                from one location to another, the archive considers
+                transformations in landscape, settlement, memory,
+                language and relationships with home.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ARCHIVE FRAMEWORK -->
+
+    <div class="archive-framework">
+
+        <div class="framework-label">
+            ARCHIVE FRAMEWORK
+        </div>
+
+        <div class="framework-chain">
+
+            <div class="framework-item">
+                PLACE
+            </div>
+
+            <div class="framework-arrow">→</div>
+
+            <div class="framework-item">
+                CHANGE
+            </div>
+
+            <div class="framework-arrow">→</div>
+
+            <div class="framework-item">
+                DISPLACEMENT
+            </div>
+
+            <div class="framework-arrow">→</div>
+
+            <div class="framework-item">
+                MEMORY
+            </div>
+
+            <div class="framework-arrow">→</div>
+
+            <div class="framework-item">
+                LANGUAGE
+            </div>
+
+            <div class="framework-arrow">→</div>
+
+            <div class="framework-item">
+                EVIDENCE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- METHODOLOGY -->
+
+    <div class="methodology">
+
+        <div class="methodology-title">
+
+            <div class="framework-label">
+                METHOD
+            </div>
+
+            <h3>
+                Building<br>
+                the archive
+            </h3>
+
+        </div>
+
+
+        <div class="method-grid">
+
+
+            <div class="method-card">
+
+                <div class="method-number">
+                    01 / SPATIAL
+                </div>
+
+                <h4>
+                    Locate
+                </h4>
+
+                <p>
+                    Identify places associated with coalfield
+                    conditions, environmental risk, settlement
+                    and rehabilitation.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">
+                    02 / DOCUMENT
+                </div>
+
+                <h4>
+                    Collect
+                </h4>
+
+                <p>
+                    Bring together maps, photographs, planning
+                    documents, reports and other archival evidence
+                    connected with landscape change.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">
+                    03 / LINGUISTIC
+                </div>
+
+                <h4>
+                    Record
+                </h4>
+
+                <p>
+                    Trace terminology used to describe fire,
+                    subsidence, displacement and rehabilitation.
+                    Future oral-history research could extend this
+                    layer through verified resident testimony.
+                </p>
+
+            </div>
+
+
+            <div class="method-card">
+
+                <div class="method-number">
+                    04 / RELATIONAL
+                </div>
+
+                <h4>
+                    Connect
+                </h4>
+
+                <p>
+                    Link places, environmental change, movement,
+                    memory, language and evidence rather than
+                    treating each archive record in isolation.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ETHICS -->
+
+    <div class="ethics">
+
+        <div>
+
+            <div class="framework-label">
+                ETHICS + LIMITATIONS
+            </div>
+
+            <h3>
+                Reading with<br>
+                uncertainty
+            </h3>
+
+        </div>
+
+
+        <div class="ethics-content">
+
+            <p>
+                This website is a curated digital archive and does not claim to be
+                a complete record of displacement in Jharia.
+                Spatial relationships shown in the interface
+                should therefore not be interpreted as verified
+                individual migration routes unless supported by
+                source evidence.
+            </p>
+
+            <p class="ethics-highlight">
+                Oral histories should only be incorporated with
+                appropriate consent, attribution or anonymisation.
+                Quotations, translations, local vocabulary,
+                speaker identities and precise locations should
+                not be invented where primary evidence is absent.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SOURCES -->
+
+    <div class="sources">
+
+        <div class="sources-top">
+
+            <h3>
+                Selected sources
+            </h3>
+
+            <p class="sources-note">
+                The archive draws on institutional documentation
+                and published material. Each record should be read
+                through its stated provenance, source and limitations.
+            </p>
+
+        </div>
+
+
+        <div class="source-list">
+
+
+            <div class="source-item">
+
+                <div class="source-number">
+                    01
+                </div>
+
+                <div class="source-name">
+                    Ministry of Coal, Government of India
+                </div>
+
+                <div class="source-type">
+                    POLICY / JHARIA MASTER PLAN
+                </div>
+
+            </div>
+
+
+            <div class="source-item">
+
+                <div class="source-number">
+                    02
+                </div>
+
+                <div class="source-name">
+                    Bharat Coking Coal Limited
+                </div>
+
+                <div class="source-type">
+                    COALFIELD / FIRE / HISTORY
+                </div>
+
+            </div>
+
+
+            <div class="source-item">
+
+                <div class="source-number">
+                    03
+                </div>
+
+                <div class="source-name">
+                    Revised Jharia Master Plan, 2025
+                </div>
+
+                <div class="source-type">
+                    REHABILITATION / POLICY
+                </div>
+
+            </div>
+
+
+            <div class="source-item">
+
+                <div class="source-number">
+                    04
+                </div>
+
+                <div class="source-name">
+                    Open research literature
+                </div>
+
+                <div class="source-type">
+                    LANGUAGE / DISPLACEMENT
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+     ARCHIVE RECORD OVERLAY / A001
+================================================== -->
+
+<div class="record-overlay" id="record1">
+
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record1')">
+            CLOSE ×
+        </button>
+
+
+        <div class="record-top">
+
+            <div class="record-number">
+                ARCHIVE / A001
+            </div>
+
+            <div class="record-type">
+                HISTORICAL MAP / 1929
+            </div>
+
+        </div>
+
+
+        <div class="record-content">
+
+            <div class="record-heading">
+
+                <h2>
+                    Mapping coal<br>
+                    <em>before displacement.</em>
+                </h2>
+
+                <p>
+                    An early geological representation of the
+                    Jharia Coalfield, recording the territory
+                    through geology, coal seams and mineral
+                    resources.
+                </p>
+
+            </div>
+
+
+            <div class="record-divider"></div>
+
+            <div class="record-media">
+
+                <div class="record-media-placeholder">
+            
+                    <div class="media-index">
+                        A001 / CARTOGRAPHIC RECORD
+                    </div>
+            
+                    <div class="media-map-title">
+                        GEOLOGICAL MAP<br>
+                        <em>OF JHARIA COALFIELD</em>
+                    </div>
+            
+                    <div class="media-map-data">
+                        <span>1929</span>
+                        <span>1 INCH = 1 MILE</span>
+                        <span>GEOLOGICAL SURVEY OF INDIA</span>
+                    </div>
+            
+                    <div class="media-map-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            
+                </div>
+            
+                <div class="record-media-caption">
+            
+                    <span>FIG. A001</span>
+            
+                    <p>
+                        Geological Map of the Jharia Coalfield.
+                        Geological Survey of India, 1929.
+                        This archive references the catalogue record
+                        rather than reproducing an unlicensed scan.
+                    </p>
+            
+                    <a href="https://search.worldcat.org/title/987266461"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        VIEW CATALOGUE RECORD ↗
+                    </a>
+            
+                </div>
+            
+            </div>
+
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A001</strong>
+                    </div>
+
+                    <div class="meta-row">
+                        <span>DATE</span>
+                        <strong>1929</strong>
+                    </div>
+
+                    <div class="meta-row">
+                        <span>CREATOR</span>
+                        <strong>Geological Survey of India</strong>
+                    </div>
+
+                    <div class="meta-row">
+                        <span>PLACE</span>
+                        <strong>Jharia Coalfield</strong>
+                    </div>
+
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Geological Map</strong>
+                    </div>
+
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Geology / Coal / Territory</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="record-reading">
+
+                    <div class="record-small-label">
+                        ARCHIVAL READING
+                    </div>
+
+                    <h3>
+                        What does this record tell us?
+                    </h3>
+
+                    <p>
+                        This map provides a historical spatial layer
+                        through which Jharia was represented primarily
+                        as geological and mineral territory.
+                    </p>
+
+                    <p>
+                        Within this archive, it becomes a point of
+                        comparison with later records of underground
+                        fire, unstable land, displacement and
+                        rehabilitation.
+                    </p>
+
+                    <p>
+                        Reading these records together allows the
+                        landscape to be understood not as a fixed map,
+                        but as a territory whose meaning changes over
+                        time.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Establishes geological territory and provides an early spatial baseline for later fire and displacement evidence.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Geological mapping establishes territory and extraction conditions but does not record resident memory or displacement experience.</p>
+            </div>
+
+            <div class="record-connection">
+
+                <span>RELATED RECORD</span>
+
+                <strong>
+                    A001 / GEOLOGY
+                    &nbsp; → &nbsp;
+                    A002 / THERMAL FIRE
+                </strong>
+
+                <p>
+                    From mapping what lies beneath the land to
+                    detecting where that land is burning.
+                </p>
+
+            </div>
+
+
+            <div class="record-source">
+
+                <span>SOURCE / CATALOGUE</span>
+
+                <p>
+                    Geological Survey of India, geological map of
+                    the Jharia Coalfield, 1929. Catalogue record:
+                    WorldCat.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==================================================
+     A002 / THERMAL FIRE
+================================================== -->
+
+<div class="record-overlay" id="record2">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record2')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A002</div>
+            <div class="record-type">REMOTE SENSING / 2019</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    Making underground<br>
+                    <em>fire visible.</em>
+                </h2>
+
+                <p>
+                    Thermal remote sensing provides another way
+                    of reading Jharia: not through coal seams alone,
+                    but through the heat generated by subsurface
+                    mine fires.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+            <div class="record-media thermal-record">
+
+                <div class="thermal-panel">
+            
+                    <div class="media-index">
+                        A002 / THERMAL EVIDENCE
+                    </div>
+            
+                    <div class="thermal-coordinates">
+                        REMOTE SENSING<br>
+                        JHARIA COALFIELD<br>
+                        2019
+                    </div>
+            
+                    <div class="thermal-field">
+            
+                        <span class="heat-zone heat-1"></span>
+                        <span class="heat-zone heat-2"></span>
+                        <span class="heat-zone heat-3"></span>
+                        <span class="heat-zone heat-4"></span>
+                        <span class="heat-zone heat-5"></span>
+            
+                        <div class="thermal-grid"></div>
+            
+                    </div>
+            
+                    <div class="thermal-title">
+                        SUBSURFACE<br>
+                        <em>COAL-MINE FIRE</em>
+                    </div>
+            
+                    <div class="thermal-legend">
+            
+                        <span>THERMAL INTENSITY</span>
+            
+                        <div class="legend-line"></div>
+            
+                        <div class="legend-labels">
+                            <span>LOW</span>
+                            <span>HIGH</span>
+                        </div>
+            
+                    </div>
+            
+                </div>
+            
+            
+                <div class="record-media-caption">
+            
+                    <span>FIG. A002</span>
+            
+                    <p>
+                        Conceptual visualisation accompanying a 2019 study
+                        using spaceborne thermal infrared data to detect and
+                        delineate subsurface coal-mine fire in the Jharia
+                        Coalfield. This graphic is an interpretive archive
+                        interface, not the original scientific figure.
+                    </p>
+            
+                    <a href="https://isprs-archives.copernicus.org/articles/XLII-3-W8/65/2019/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        READ RESEARCH ↗
+                    </a>
+            
+                </div>
+            
+            </div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A002</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DATE</span>
+                        <strong>2019</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>CREATOR</span>
+                        <strong>S. S. Biswal &amp; A. K. Gorai</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>PLACE</span>
+                        <strong>Jharia Coalfield</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Thermal Remote Sensing / Research</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Fire / Thermal / GIS / Land</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        ARCHIVAL READING
+                    </div>
+
+                    <h3>
+                        A landscape read through heat.
+                    </h3>
+
+                    <p>
+                        The study examines the detection and
+                        delineation of subsurface coal-mine fire
+                        using spaceborne thermal infrared data.
+                    </p>
+
+                    <p>
+                        Placed after A001, the record changes the
+                        archive's spatial language from geological
+                        resources beneath the ground to thermal
+                        evidence of a landscape affected by fire.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Makes underground coal-fire conditions spatially visible through thermal remote sensing.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Thermal sensing can detect and delineate heat anomalies, but it does not by itself explain how residents experience, interpret or respond to risk.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>RELATED RECORDS</span>
+                <strong>A001 / GEOLOGY → A002 / FIRE → A003 / LIFE</strong>
+                <p>
+                    Geological territory becomes thermal territory,
+                    and thermal territory becomes inhabited risk.
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>SOURCE</span>
+                <p>
+                    Biswal, S. S. &amp; Gorai, A. K. (2019).
+                    Detection and Delineation of Subsurface Coal
+                    Mine Fire from Spaceborne Thermal Infrared Data
+                    in Jharia Coalfield.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     A003 / PHOTOGRAPHY
+================================================== -->
+
+<div class="record-overlay" id="record3">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record3')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A003</div>
+            <div class="record-type">PHOTO ESSAY / 2009</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    Living above<br>
+                    <em>the fire.</em>
+                </h2>
+
+                <p>
+                    Photography shifts the archive from remotely
+                    sensed heat to the everyday landscape inhabited
+                    by people living around the coalfield.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+            <div class="record-media photo-record">
+
+                <div class="photo-archive-panel">
+            
+                    <div class="media-index">
+                        A003 / PHOTOGRAPHIC EVIDENCE
+                    </div>
+            
+                    <div class="photo-frame">
+            
+                        <div class="photo-placeholder-text">
+                            <span>PHOTO ESSAY / 2009</span>
+            
+                            <strong>
+                                HOT<br>
+                                FRAMES
+                            </strong>
+            
+                            <p>
+                                JHARIA COALFIELD<br>
+                                EVERYDAY LIFE ABOVE FIRE
+                            </p>
+                        </div>
+            
+                        <div class="photo-marker">
+                            03 / VISUAL EVIDENCE
+                        </div>
+            
+                    </div>
+            
+                </div>
+            
+            
+                <div class="record-media-caption">
+            
+                    <span>FIG. A003</span>
+            
+                    <p>
+                        “Hot Frames”, published by Down To Earth in 2009,
+                        combines photography and reportage to document
+                        everyday life within Jharia's coal-fire landscape.
+                        The original photographs are referenced rather than
+                        reproduced here without established reuse permission.
+                    </p>
+            
+                    <a href="https://www.downtoearth.org.in/mining/hot-frames-1351"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        VIEW PHOTO ESSAY ↗
+                    </a>
+            
+                </div>
+            
+            </div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A003</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DATE</span>
+                        <strong>2009</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>TEXT</span>
+                        <strong>Alok Kumar Gupta</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>PHOTOGRAPHY</span>
+                        <strong>Sandip Kumar Nag</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Photography / Reportage</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Fire / Resident / Livelihood / Memory</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        ARCHIVAL READING
+                    </div>
+
+                    <h3>
+                        Risk becomes everyday life.
+                    </h3>
+
+                    <p>
+                        Published photography and reportage provide
+                        a human-scale view of Jharia's coal-fire
+                        landscape.
+                    </p>
+
+                    <p>
+                        Unlike geological and thermal maps, this
+                        record allows the archive to consider how
+                        environmental instability intersects with
+                        homes, work and everyday occupation.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Records everyday lived conditions through photographic and journalistic evidence.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Photographic reportage offers a situated view of lived conditions, but it cannot represent every settlement, household or experience across the coalfield.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>RELATED RECORD</span>
+                <strong>A002 / HEAT → A003 / EVERYDAY LIFE</strong>
+                <p>
+                    Scientific evidence is placed beside lived
+                    and photographed landscapes.
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>SOURCE</span>
+                <p>
+                    Down To Earth, “Hot Frames”, published
+                    31 March 2009.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     A004 / JHARIA MASTER PLAN 2009
+================================================== -->
+
+<div class="record-overlay" id="record4">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record4')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A004</div>
+            <div class="record-type">POLICY / 2009</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    When land becomes<br>
+                    <em>“endangered.”</em>
+                </h2>
+
+                <p>
+                    The Jharia Master Plan introduces an
+                    institutional vocabulary through which fire,
+                    subsidence, settlement and rehabilitation
+                    are classified.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+            <div class="record-media policy-record">
+
+                <div class="policy-panel">
+            
+                    <div class="media-index">
+                        A004 / INSTITUTIONAL RECORD
+                    </div>
+            
+                    <div class="policy-document">
+            
+                        <div class="policy-doc-top">
+                            GOVERNMENT OF INDIA<br>
+                            MINISTRY OF COAL
+                        </div>
+            
+                        <div class="policy-year">
+                            2009
+                        </div>
+            
+                        <h3>
+                            JHARIA<br>
+                            MASTER PLAN
+                        </h3>
+            
+                        <div class="policy-rule"></div>
+            
+                        <p>
+                            FIRE / SUBSIDENCE / AFFECTED AREAS<br>
+                            REHABILITATION / RESETTLEMENT
+                        </p>
+            
+                    </div>
+            
+                    <div class="policy-language">
+            
+                        <span>INSTITUTIONAL VOCABULARY</span>
+            
+                        <div>
+                            UNSTABLE
+                        </div>
+            
+                        <div>
+                            AFFECTED
+                        </div>
+            
+                        <div>
+                            ENDANGERED
+                        </div>
+            
+                        <div>
+                            REHABILITATION
+                        </div>
+            
+                    </div>
+            
+                </div>
+            
+            
+                <div class="record-media-caption">
+            
+                    <span>DOC. A004</span>
+            
+                    <p>
+                        The 2009 Jharia Master Plan forms an institutional
+                        layer of the archive. Its terminology demonstrates
+                        how environmental conditions, settlements and
+                        populations become classified through policy.
+                    </p>
+            
+                    <a href="https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=85965"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        VIEW GOVERNMENT RECORD ↗
+                    </a>
+            
+                </div>
+            
+            </div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A004</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DATE</span>
+                        <strong>2009</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>CREATOR</span>
+                        <strong>Government of India</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DOCUMENT</span>
+                        <strong>Jharia Master Plan</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Policy / Planning</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Fire / Subsidence / Rehabilitation</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        LINGUISTIC READING
+                    </div>
+
+                    <h3>
+                        Who gets to name risk?
+                    </h3>
+
+                    <p>
+                        Policy does more than respond to the
+                        landscape. It produces categories through
+                        which land, settlements and populations
+                        become administratively legible.
+                    </p>
+
+                    <p>
+                        Terms such as affected, endangered,
+                        unstable and rehabilitation therefore form
+                        part of the linguistic archive of Jharia.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Shows how environmental risk is translated into institutional categories, policy and rehabilitation language.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Policy documentation records institutional categories and rehabilitation frameworks but cannot independently represent how affected residents understand home, loss or relocation.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>ARCHIVE QUESTION</span>
+                <strong>INSTITUTIONAL LANGUAGE ↔ LIVED LANGUAGE</strong>
+                <p>
+                    How does the language of planning differ from
+                    the language through which residents describe
+                    home, danger and displacement?
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>SOURCE</span>
+                <p>
+                    Government of India / Ministry of Coal,
+                    Jharia Master Plan, approved in 2009.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     A005 / BELGARIA
+================================================== -->
+
+<div class="record-overlay" id="record5">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record5')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A005</div>
+            <div class="record-type">RESETTLEMENT / BELGARIA</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    Belgaria:<br>
+                    <em>after displacement.</em>
+                </h2>
+
+                <p>
+                    Belgaria introduces the destination side of
+                    displacement into the archive: a rehabilitation
+                    landscape associated with relocation from
+                    coal-fire-affected areas.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+<div class="record-media">
+<div class="final-media-panel belgaria-panel"><div class="final-media-kicker">A005 / RESETTLEMENT LANDSCAPE</div><div class="final-media-meta">BELGARIA<br>DHANBAD DISTRICT<br>REHABILITATION</div><div class="final-media-title">A new address.<br><em>A changed sense of home.</em></div></div>
+<div class="record-media-caption"><span>FIG. A005</span><p>Belgaria is read here as a rehabilitation landscape rather than as proof of any single resident's route. The record connects resettlement with home, livelihood and infrastructure.</p><a class="final-source-link" href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2208187&lang=1&reg=3" target="_blank" rel="noopener noreferrer">VIEW GOVERNMENT UPDATE ↗</a></div>
+</div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A005</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>PLACE</span>
+                        <strong>Belgaria</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>REGION</span>
+                        <strong>Dhanbad District, Jharkhand</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Rehabilitation Landscape</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Resettlement / Home / Infrastructure</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        SPATIAL READING
+                    </div>
+
+                    <h3>
+                        Relocation is not simply movement.
+                    </h3>
+
+                    <p>
+                        A rehabilitation colony can be mapped as a
+                        destination, but displacement also changes
+                        access to work, social networks, infrastructure
+                        and relationships with the former home.
+                    </p>
+
+                    <p>
+                        Belgaria therefore expands the archive from
+                        environmental risk toward the spatial and
+                        social consequences of resettlement.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Documents the geography and institutional context of rehabilitation and resettlement at Belgaria.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Resettlement documentation establishes rehabilitation geography and institutional context, but it does not by itself reconstruct an individual family's complete displacement journey.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>IMPORTANT</span>
+                <strong>RELATIONSHIP ≠ VERIFIED INDIVIDUAL ROUTE</strong>
+                <p>
+                    The archive should not represent every connection
+                    between Jharia and Belgaria as a documented
+                    individual migration route without supporting
+                    evidence.
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>SOURCE BASIS</span>
+                <p>
+                    Government documentation concerning Jharia
+                    rehabilitation and resettlement at Belgaria.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     A006 / DOCUMENTARY
+================================================== -->
+
+<div class="record-overlay" id="record6">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record6')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A006</div>
+            <div class="record-type">DOCUMENTARY / 2011</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    Voices from<br>
+                    <em>Boka Pahari.</em>
+                </h2>
+
+                <p>
+                    Documentary media introduces bodies, voices,
+                    movement and everyday experience into an archive
+                    otherwise dominated by maps and documents.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+<div class="record-media">
+<div class="final-media-panel video-panel"><div class="final-media-kicker">A006 / DOCUMENTARY EVIDENCE</div><div class="final-media-meta">BOKA PAHARI / JHARIA<br>ORIGINAL BROADCAST / 2011<br>AUDIOVISUAL TESTIMONY</div><div class="final-media-title">The landscape<br><em>begins to speak.</em></div><div class="video-play">▶</div></div>
+<div class="record-media-caption"><span>VID. A006</span><p>Documentary media adds voice, gesture and everyday experience to the archive. It is presented as audiovisual testimony and should be read alongside scientific and institutional records.</p><a class="final-source-link" href="https://www.youtube.com/watch?v=xv7uus5cS70" target="_blank" rel="noopener noreferrer">WATCH DOCUMENTARY ↗</a></div>
+</div>
+
+<div class="a006-video-heading">AUDIOVISUAL EVIDENCE / TWO DOCUMENTARY PERSPECTIVES</div>
+<p class="a006-video-intro">Two credited video records are presented together to compare documentary framing across English/international and Hindi-language contexts. They supplement the archive rather than standing in for the full range of resident voices.</p>
+<div class="a006-video-grid">
+  <article class="a006-video-card">
+    <div class="a006-video-frame"><iframe src="https://www.youtube.com/embed/xv7uus5cS70" title="Digging for Hope on Coal Fires: The Story of Jharia" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <div class="a006-video-lang">ENGLISH / INTERNATIONAL DOCUMENTARY</div>
+    <h4>Digging for Hope on Coal Fires: The Story of Jharia</h4>
+    <p class="a006-video-credit">Credit: KBS documentary media · Original broadcast 2011 · YouTube · Jharia / Boka Pahari context.</p>
+    <p class="a006-video-note">Archive use: documentary testimony and audiovisual context. Copyright remains with the original creator/publisher; embedded here from the original YouTube platform.</p>
+    <a href="https://www.youtube.com/watch?v=xv7uus5cS70" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL ON YOUTUBE ↗</a>
+  </article>
+  <article class="a006-video-card">
+    <div class="a006-video-frame"><iframe src="https://www.youtube.com/embed/BLrdvIAz9L4" title="Jharia Documentary - History of Coal Mine - In Hindi" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <div class="a006-video-lang">HINDI / SUPPLEMENTARY DOCUMENTATION</div>
+    <h4>Jharia Documentary | History of Coal Mine | How People Live in Burning City</h4>
+    <p class="a006-video-credit">Credit: Stock Walla · Published 28 April 2023 · Hindi · YouTube · Jharia, Dhanbad, Jharkhand.</p>
+    <p class="a006-video-note">Archive use: supplementary Hindi-language audiovisual documentation. This is not treated as equivalent to peer-reviewed or government evidence, and should not be taken as representative of all local voices. Copyright remains with the original creator/channel.</p>
+    <a href="https://www.youtube.com/watch?v=BLrdvIAz9L4" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL ON YOUTUBE ↗</a>
+  </article>
+</div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A006</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>ORIGINAL BROADCAST</span>
+                        <strong>2011</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>PLACE</span>
+                        <strong>Boka Pahari / Jharia</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Documentary Video</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Voice / Livelihood / Coal / Childhood</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        AUDIOVISUAL READING
+                    </div>
+
+                    <h3>
+                        The archive begins to speak.
+                    </h3>
+
+                    <p>
+                        Documentary footage offers forms of evidence
+                        that a map cannot preserve: speech, gesture,
+                        atmosphere and everyday interaction with the
+                        coalfield landscape.
+                    </p>
+
+                    <p>
+                        Statements in documentary media should still
+                        be treated as testimony and contextualised
+                        alongside scientific and institutional records.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Introduces audiovisual testimony and documentary voice into the archive.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Documentary testimony introduces lived experience but should not be treated as representative of all displaced communities.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>RELATED RECORDS</span>
+                <strong>A003 / IMAGE → A006 / VOICE</strong>
+                <p>
+                    The visual archive develops into an audiovisual
+                    record of inhabited landscape.
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>DOCUMENTARY</span>
+                <p>
+                    “Digging for Hope on Coal Fires: The Story of
+                    Jharia.” Original broadcast 2011; available
+                    through KBS documentary media.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     A007 / THE MINEWORKERS SONG
+================================================== -->
+
+<div class="record-overlay" id="record7">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record7')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A007</div>
+            <div class="record-type">SONG / 2023</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    The Mineworkers’<br>
+                    <em>Song.</em>
+                </h2>
+
+                <p>
+                    Cultural expression expands the meaning of
+                    archival evidence beyond maps, policies and
+                    scientific documentation.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+<div class="record-media">
+<div class="final-media-panel sound-panel"><div class="final-media-kicker">A007 / CULTURAL MEMORY</div><div class="final-media-meta">THE MINEWORKERS' SONG<br>CARBON CULTURES / 2023<br>SONG / SOUND INSTALLATION</div><div class="final-media-title">Memory carried<br><em>through sound.</em></div><div class="sound-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="record-media-caption"><span>SND. A007</span><p>This record expands archival evidence beyond maps and policy. Sound and cultural expression can preserve labour, memory and experience in forms that administrative documents cannot.</p><a class="final-source-link" href="https://bengaluru.sciencegallery.com/carbon-cultures/the-mineworkers-song" target="_blank" rel="noopener noreferrer">EXPLORE SOUND RECORD ↗</a></div>
+</div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A007</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DATE</span>
+                        <strong>2023</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>COMPOSER</span>
+                        <strong>Pillo Deshwal</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>CONTEXT</span>
+                        <strong>Carbon Cultures</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Song / Sound Installation</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Labour / Memory / Voice / Culture</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        CULTURAL READING
+                    </div>
+
+                    <h3>
+                        Can a song be an archive?
+                    </h3>
+
+                    <p>
+                        The record asks how cultural expression
+                        can preserve experiences of labour and
+                        mining that may not appear in formal
+                        administrative documents.
+                    </p>
+
+                    <p>
+                        Sound adds another dimension to the archive:
+                        memory can be carried not only through text
+                        and territory, but also through voice,
+                        rhythm and performance.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Preserves cultural and labour memory through sound, song and artistic interpretation.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>A cultural work can preserve labour memory and collective expression, but it is not a substitute for individually sourced oral-history testimony.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>ARCHIVE EXPANSION</span>
+                <strong>DOCUMENT → VOICE → CULTURAL MEMORY</strong>
+                <p>
+                    Evidence is treated as plural rather than
+                    belonging to a single archival medium.
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>SOURCE</span>
+                <p>
+                    Science Gallery Bengaluru, Carbon Cultures,
+                    “The Mineworkers Song”, 2023.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     A008 / REVISED JHARIA MASTER PLAN
+================================================== -->
+
+<div class="record-overlay" id="record8">
+    <div class="record-shell">
+
+        <button class="close-record" onclick="closeRecord('record8')">
+            CLOSE ×
+        </button>
+
+        <div class="record-top">
+            <div class="record-number">ARCHIVE / A008</div>
+            <div class="record-type">POLICY / 2025</div>
+        </div>
+
+        <div class="record-content">
+
+            <div class="record-heading">
+                <h2>
+                    Rehabilitation<br>
+                    <em>redefined.</em>
+                </h2>
+
+                <p>
+                    The Revised Jharia Master Plan provides the
+                    archive with a contemporary policy layer through
+                    which rehabilitation can be compared across time.
+                </p>
+            </div>
+
+            <div class="record-divider"></div>
+
+<div class="record-media">
+<div class="final-media-panel revised-panel"><div class="final-media-kicker">A008 / POLICY / 2025</div><div class="final-media-meta">REVISED JHARIA MASTER PLAN<br>25 JUNE 2025<br>REHABILITATION / LIVELIHOOD</div><div class="final-media-title">From relocation<br><em>toward rehabilitation.</em></div><div class="revised-year">2025</div></div>
+<div class="record-media-caption"><span>DOC. A008</span><p>Read against the 2009 Master Plan, the revised policy creates a temporal comparison of how rehabilitation, livelihood, skills, credit and infrastructure are framed.</p><a class="final-source-link" href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2139494&lang=2&reg=48" target="_blank" rel="noopener noreferrer">VIEW 2025 POLICY RECORD ↗</a></div>
+</div>
+
+            <div class="record-information">
+
+                <div class="record-metadata">
+                    <div class="meta-row">
+                        <span>RECORD ID</span>
+                        <strong>A008</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DATE</span>
+                        <strong>25 June 2025</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>CREATOR</span>
+                        <strong>Government of India</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>DOCUMENT</span>
+                        <strong>Revised Jharia Master Plan</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>MEDIUM</span>
+                        <strong>Policy / Rehabilitation</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>THEMES</span>
+                        <strong>Livelihood / Resettlement / Future</strong>
+                    </div>
+                </div>
+
+                <div class="record-reading">
+                    <div class="record-small-label">
+                        COMPARATIVE READING
+                    </div>
+
+                    <h3>
+                        What changed after 2009?
+                    </h3>
+
+                    <p>
+                        The revised plan places renewed emphasis on
+                        rehabilitation alongside livelihood,
+                        skill development, credit and infrastructure.
+                    </p>
+
+                    <p>
+                        Read beside A004, the record allows the archive
+                        to examine how the institutional meaning of
+                        rehabilitation changes over time.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="record-evidence-role">
+                <span>EVIDENCE ROLE</span>
+                <p>Shows how rehabilitation policy and its priorities are being reframed in the contemporary period.</p>
+            </div>
+
+            <div class="record-limitation">
+                <span>WHAT THIS RECORD CANNOT SHOW</span>
+                <p>Contemporary policy records planned priorities and interventions, but they do not by themselves demonstrate how rehabilitation outcomes are experienced on the ground.</p>
+            </div>
+
+            <div class="record-connection">
+                <span>COMPARE</span>
+                <strong>A004 / 2009 ↔ A008 / 2025</strong>
+                <p>
+                    Two policy moments, sixteen years apart,
+                    provide a temporal comparison of how
+                    displacement and rehabilitation are framed.
+                </p>
+            </div>
+
+            <div class="record-source">
+                <span>SOURCE</span>
+                <p>
+                    Government of India, Revised Jharia Master Plan,
+                    approved 25 June 2025.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer class="archive-footer">
+
+    <div class="footer-small">
+
+        <span>
+            DIGITAL SPATIAL–LINGUISTIC ARCHIVE
+        </span>
+
+        <span>
+            JHARIA / JHARKHAND / INDIA
+        </span>
+
+    </div>
+
+
+    <div class="footer-title">
+        JHARIA<span>.</span>
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            FIRE • LAND • MEMORY • WORDS
+        </span>
+
+        <span>
+            RESEARCH ARCHIVE
+        </span>
+
+    </div>
+
+</footer>
+
+<script>
+    function openRecord(id) {
+        document.getElementById(id).classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeRecord(id) {
+        document.getElementById(id).classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.querySelectorAll('.record-overlay.active').forEach(function(record) {
+                record.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+        }
+    });
+</script>
+
+</body>
+
+</html>
